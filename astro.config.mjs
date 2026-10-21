@@ -25,7 +25,7 @@ export default defineConfig({
   ],
   vite: {
     server: {
-      allowedHosts: ['.trycloudflare.com', 'localhost', '127.0.0.1'],
+      allowedHosts: ['.trycloudflare.com', 'bore.pub', '.bore.pub', 'localhost', '127.0.0.1'],
     },
     ssr: {
       noExternal: ['@fontsource/saira', '@fontsource/inter']

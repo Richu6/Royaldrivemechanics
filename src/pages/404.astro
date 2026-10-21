@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { businessConfig } from '../config/business';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Page Not Found (404) | Royal Drive Mechanics"
+  description="The requested page could not be found. Return to Royal Drive Mechanics auto workshop."
+  noindex={true}
+>
+  <section class="py-24 sm:py-32 bg-brand-black min-h-[75vh] flex items-center justify-center text-center">
+    <div class="max-w-xl mx-auto px-4 sm:px-6">
+      
+      <div class="inline-block p-4 bg-brand-surface border border-brand-red/40 rounded-card mb-6 shadow-glow-red">
+        <span class="text-5xl font-display font-black text-brand-red">404</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-display font-bold text-white uppercase tracking-tight">
+        Engine Stalled — Page Not Found
+      </h1>
+
+      <p class="text-sm text-brand-grey mt-3 leading-relaxed">
+        We couldn't locate the page you were navigating to. The URL may have changed or the link might be broken.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/"
+          class="w-full sm:w-auto px-6 py-3 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-xs font-bold uppercase tracking-wider transition shadow-glow-red"
+        >
+          Return to Homepage →
+        </a>
+        <a
+          href="/services"
+          class="w-full sm:w-auto px-6 py-3 rounded-card bg-brand-charcoal hover:bg-brand-border border border-brand-border text-white text-xs font-semibold transition"
+        >
+          Browse All Services
+        </a>
+        <a
+          href={businessConfig.contact.phoneTel}
+          class="w-full sm:w-auto px-6 py-3 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-xs font-semibold transition"
+        >
+          📞 Call 365-524-2003
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

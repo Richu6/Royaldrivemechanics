@@ -1,0 +1,154 @@
+---
+import { businessConfig } from '../config/business';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-charcoal border-t border-brand-border text-brand-grey text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      
+      <!-- Brand & Mission Column -->
+      <div class="space-y-4">
+        <a href="/" class="inline-block">
+          <img
+            src="/brand/rdm-logo-transparent.png"
+            alt="Royal Drive Mechanics"
+            height="40"
+            style="height: 40px; max-height: 40px; width: auto; object-fit: contain;"
+            class="h-10 w-auto object-contain"
+            onerror="this.style.display='none'; document.getElementById('footer-logo-wordmark').style.display='block';"
+          />
+          <span id="footer-logo-wordmark" class="hidden text-xl font-display font-bold text-white tracking-wider">
+            ROYAL DRIVE MECHANICS
+          </span>
+        </a>
+        <p class="text-xs text-brand-grey leading-relaxed">
+          {businessConfig.taglines.primary}
+        </p>
+        <p class="text-xs text-brand-grey leading-relaxed">
+          {businessConfig.type}
+        </p>
+        <div class="pt-2">
+          <a
+            href={businessConfig.contact.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-xs text-white hover:text-brand-red transition"
+          >
+            <span>📸 Instagram:</span>
+            <span class="font-semibold text-brand-red">{businessConfig.contact.instagramHandle}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links Column -->
+      <div class="space-y-3">
+        <h3 class="text-white font-display font-semibold text-sm uppercase tracking-wider border-b border-brand-border/60 pb-2">
+          Quick Links
+        </h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/" class="hover:text-white transition">Home</a></li>
+          <li><a href="/services" class="hover:text-white transition">All Services</a></li>
+          <li><a href="/services/oil-changes" class="hover:text-white transition">Oil Changes</a></li>
+          <li><a href="/services/brakes" class="hover:text-white transition">Brake Repair & Service</a></li>
+          <li><a href="/services/safety-inspections" class="hover:text-white transition">MTO Safety Inspections</a></li>
+          <li><a href="/services/collision-repairs" class="hover:text-white transition">Collision & Body Repairs</a></li>
+          <li><a href="/book" class="text-brand-red font-semibold hover:text-brand-red-hover transition">Book a Slot Online →</a></li>
+          <li><a href="/contact" class="hover:text-white transition">Contact & Location</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact & Hours Column -->
+      <div class="space-y-3">
+        <h3 class="text-white font-display font-semibold text-sm uppercase tracking-wider border-b border-brand-border/60 pb-2">
+          Contact & Workshop
+        </h3>
+        <div class="space-y-2.5 text-xs">
+          <div>
+            <span class="text-white block font-medium">Workshop Address:</span>
+            <p>{businessConfig.address.street}</p>
+            <p>{businessConfig.address.city}, {businessConfig.address.province} {businessConfig.address.postalCode}</p>
+            <a
+              href={businessConfig.address.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-red hover:underline text-[11px] font-semibold mt-0.5 inline-block"
+            >
+              Get Directions on Google Maps ↗
+            </a>
+          </div>
+
+          <div>
+            <span class="text-white block font-medium">Phone / Contact:</span>
+            <a href={businessConfig.contact.phoneTel} class="text-brand-red font-bold hover:underline">
+              {businessConfig.contact.phone}
+            </a>
+            <span class="text-brand-grey text-[11px] block">Contact: {businessConfig.contact.contactPerson}</span>
+          </div>
+
+          <div>
+            <span class="text-white block font-medium">Email:</span>
+            <a href={businessConfig.contact.emailMailto} class="hover:text-white underline">
+              {businessConfig.contact.email}
+            </a>
+          </div>
+
+          <div class="pt-1">
+            <span class="text-white block font-medium">Operating Hours:</span>
+            {businessConfig.displayHours.map((h) => (
+              <p class="text-[11px]">{h.days}: <span class="text-white">{h.time}</span></p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Credentials & Areas Column -->
+      <div class="space-y-3">
+        <h3 class="text-white font-display font-semibold text-sm uppercase tracking-wider border-b border-brand-border/60 pb-2">
+          Certifications & Areas
+        </h3>
+        <div class="space-y-3 text-xs">
+          <div class="bg-brand-surface p-3 rounded-card border border-brand-border/80">
+            <span class="text-white font-semibold block text-[11px] text-brand-red uppercase tracking-wider mb-1">
+              Official Credential
+            </span>
+            <p class="text-white font-medium text-xs leading-snug">
+              {businessConfig.credentials.mtoLicense}
+            </p>
+            <p class="text-[11px] text-brand-grey mt-1">
+              {businessConfig.credentials.certifiedInspectionCentre} — {businessConfig.credentials.inspectionTagline}
+            </p>
+          </div>
+
+          <div>
+            <span class="text-white block font-medium mb-1">Areas We Serve:</span>
+            <p class="text-xs text-brand-grey leading-relaxed">
+              {businessConfig.serviceAreas.join(' · ')}
+            </p>
+          </div>
+
+          <div>
+            <span class="text-white block font-medium mb-1">Google Rating:</span>
+            <div class="flex items-center gap-1.5 text-xs">
+              <span class="text-brand-red font-bold">★ {businessConfig.googleReviews.rating}</span>
+              <span>from {businessConfig.googleReviews.reviewCount} verified reviews</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Legal Bar -->
+    <div class="border-t border-brand-border/80 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <p>© {currentYear} {businessConfig.name}. All rights reserved.</p>
+      
+      <div class="flex items-center gap-6">
+        <a href="/privacy" class="hover:text-white transition">Privacy Policy (PIPEDA)</a>
+        <a href="/terms" class="hover:text-white transition">Terms & Estimates</a>
+        <a href="/terms#offer-terms" class="hover:text-white transition">Offer Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

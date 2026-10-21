@@ -1,0 +1,216 @@
+---
+import '@fontsource/saira/600.css';
+import '@fontsource/saira/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '../styles/global.css';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyActions from '../components/StickyActions.astro';
+import { businessConfig } from '../config/business';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  breadcrumbs?: { name: string; url: string }[];
+  serviceSchema?: any;
+  faqSchema?: { question: string; answer: string }[];
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '',
+  ogImage = '/og-image.jpg',
+  noindex = false,
+  breadcrumbs,
+  serviceSchema,
+  faqSchema,
+} = Astro.props;
+
+const siteUrl = 'https://royaldrivemechanics.ca';
+const canonicalUrl = new URL(canonicalPath, siteUrl).href;
+const fullOgImageUrl = new URL(ogImage, siteUrl).href;
+
+// Base LocalBusiness / AutoRepair JSON-LD
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoRepair',
+  '@id': `${siteUrl}/#business`,
+  name: businessConfig.name,
+  alternateName: businessConfig.shortName,
+  description: businessConfig.type,
+  url: siteUrl,
+  telephone: businessConfig.contact.phoneIntl,
+  email: businessConfig.contact.email,
+  priceRange: '$$',
+  image: [
+    `${siteUrl}/brand/rdm-logo-full.jpg`,
+    `${siteUrl}/og-image.jpg`
+  ],
+  logo: `${siteUrl}/brand/rdm-logo-full.jpg`,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: businessConfig.address.street,
+    addressLocality: businessConfig.address.city,
+    addressRegion: businessConfig.address.province,
+    postalCode: businessConfig.address.postalCode,
+    addressCountry: 'CA'
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: businessConfig.address.coordinates.latitude,
+    longitude: businessConfig.address.coordinates.longitude
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '08:00',
+      closes: '18:00'
+    }
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: businessConfig.googleReviews.rating.toString(),
+    reviewCount: businessConfig.googleReviews.reviewCount.toString(),
+    bestRating: '5',
+    worstRating: '1'
+  },
+  sameAs: [
+    businessConfig.contact.instagramUrl,
+    businessConfig.googleReviews.googleReviewUrl
+  ],
+  areaServed: businessConfig.serviceAreas.map(area => ({
+    '@type': 'City',
+    name: area
+  }))
+};
+
+// BreadcrumbList JSON-LD
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: crumb.name,
+    item: new URL(crumb.url, siteUrl).href
+  }))
+} : null;
+
+// FAQPage JSON-LD
+const faqPageSchema = faqSchema && faqSchema.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqSchema.map(item => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer
+    }
+  }))
+} : null;
+---
+
+<!doctype html>
+<html lang="en-CA" class="bg-brand-black text-brand-white scroll-smooth selection:bg-brand-red selection:text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en-CA" href={canonicalUrl} />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {!noindex && <meta name="robots" content="index, follow" />}
+
+    <!-- Favicons & App Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#D4202B" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Royal Drive Mechanics" />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImageUrl} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
+    {serviceSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    )}
+    {faqPageSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />
+    )}
+  </head>
+  <body class="min-h-screen flex flex-col font-sans antialiased text-brand-white bg-brand-black pb-16 md:pb-0">
+    <!-- Accessible Skip Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-red focus:text-white focus:font-bold focus:rounded-card focus:shadow-glow-red"
+    >
+      Skip to main content
+    </a>
+
+    <Header />
+
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <StickyActions />
+  </body>
+</html>
+
+<style is:global>
+  /* Base automotive aesthetics & smooth performance */
+  :root {
+    color-scheme: dark;
+  }
+  
+  /* Focus rings for WCAG AA compliance */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #D4202B;
+    outline-offset: 2px;
+  }
+
+  /* Prevent image dragging */
+  img {
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  /* Subtle speed angle utility */
+  .speed-angle {
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+  }
+</style>

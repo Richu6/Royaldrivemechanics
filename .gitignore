@@ -1,0 +1,26 @@
+# Build output
+dist/
+.astro/
+.wrangler/
+
+# Dependency directories
+node_modules/
+
+# Environment variables & secrets
+.env
+.env.production
+*.env.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vitest
+coverage/

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /booking/confirmed
+
+Sitemap: https://royaldrivemechanics.ca/sitemap-index.xml

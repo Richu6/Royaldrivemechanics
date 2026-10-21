@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { businessConfig } from '../config/business';
+import { seoData } from '../data/seo';
+
+export const prerender = true;
+
+const seo = seoData.terms;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath={seo.canonicalPath}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Terms of Service', url: '/terms' }
+  ]}
+>
+  <section class="py-16 sm:py-24 bg-brand-black border-b border-brand-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="border-b border-brand-border pb-8 mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-red">
+          Workshop Policies & Regulations
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-display font-extrabold text-white uppercase tracking-tight mt-1">
+          Terms of Service & Offer Terms
+        </h1>
+        <p class="text-xs text-brand-grey mt-2">
+          Effective Date: January 1, 2026 · Last Updated: October 2026
+        </p>
+      </div>
+
+      <div class="prose prose-invert max-w-none text-sm text-brand-grey space-y-8 leading-relaxed">
+        
+        <!-- Offer Terms Section with Anchor #offer-terms -->
+        <div id="offer-terms" class="p-6 rounded-card bg-brand-surface border-2 border-brand-red/80 scroll-mt-28">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-red block mb-1">
+            Promotional Details
+          </span>
+          <h2 class="text-xl font-display font-bold text-white uppercase tracking-tight mb-3">
+            Current Promotion: 15% Off Brakes & Oil Changes
+          </h2>
+          <p class="text-white text-sm mb-3">
+            Royal Drive Mechanics is pleased to offer a 15% discount on qualifying brake services and engine oil changes.
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs text-brand-grey">
+            <li>Applicable to standard passenger vehicles and light-duty trucks.</li>
+            <li>Terms and conditions apply. <strong>Contact us for full details</strong> regarding specific parts, synthetic oil capacities, and specialty rotor friction grades.</li>
+            <li>Discount must be mentioned or selected at the time of booking or drop-off.</li>
+            <li>Cannot be combined with other promotional offers or commercial fleet agreements unless authorized in writing.</li>
+            <li>Offer valid until {businessConfig.promotion.endDate || 'further notice'}.</li>
+          </ul>
+        </div>
+
+        <!-- Ontario Written Estimates Policy -->
+        <div>
+          <h2 class="text-lg font-bold text-white uppercase tracking-tight mb-3">
+            1. Ontario Written Estimates Policy
+          </h2>
+          <p>
+            In strict compliance with Ontario consumer protection regulations and motor vehicle repair standards:
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li><strong>Written Estimate Guarantee:</strong> Before commencing any diagnostic teardown or mechanical work, we provide a written estimate itemizing labor costs, parts required, and applicable taxes.</li>
+            <li><strong>No Work Without Approval:</strong> We will never perform additional repairs or exceed the authorized estimate without your prior explicit verbal or written authorization.</li>
+            <li><strong>Replaced Parts Return:</strong> Customers have the statutory right to request and inspect their replaced worn parts upon picking up their vehicle.</li>
+          </ul>
+        </div>
+
+        <!-- Appointment Scheduling & Cancellations -->
+        <div>
+          <h2 class="text-lg font-bold text-white uppercase tracking-tight mb-3">
+            2. Appointment Scheduling & Bay Capacity
+          </h2>
+          <p>
+            Online slot reservations secure a dedicated 60-minute intake window in our Mississauga service bay.
+          </p>
+          <ul class="list-disc pl-5 space-y-1.5 mt-2">
+            <li>Please arrive within 10 minutes of your scheduled slot start time.</li>
+            <li>If you need to change or cancel your appointment, please contact Mirshad at <a href="tel:+13655242003" class="text-brand-red underline">365-524-2003</a> as early as possible so we can release the bay slot to another motorist.</li>
+            <li>In the rare event that inclement weather or technical circumstances require rescheduling, we will notify you immediately by phone or email.</li>
+          </ul>
+        </div>
+
+        <!-- Insurance Collision Claims -->
+        <div>
+          <h2 class="text-lg font-bold text-white uppercase tracking-tight mb-3">
+            3. Collision & Insurance Work
+          </h2>
+          <p>
+            Under Ontario automotive insurance regulations, the policyholder has the absolute right to select their certified repair facility of choice. Royal Drive Mechanics works in good faith with all major Canadian insurance companies to prepare accurate photographic estimates, supplement claims, and restore vehicles to manufacturer safety tolerances.
+          </p>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="pt-6 border-t border-brand-border">
+          <p class="text-xs text-brand-grey">
+            Questions regarding our terms or repair estimates? Call us directly at <a href="tel:+13655242003" class="text-white font-bold underline">365-524-2003</a> or email <a href="mailto:royaldrivemechanics@gmail.com" class="text-brand-red underline">royaldrivemechanics@gmail.com</a>.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,456 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PromoBanner from '../components/PromoBanner.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import Map from '../components/Map.astro';
+import TestimonialsCarousel from '../components/islands/TestimonialsCarousel';
+
+import { businessConfig } from '../config/business';
+import { servicesData } from '../data/services';
+import { reviewsData } from '../data/reviews';
+import { testimonialsData } from '../data/testimonials';
+import { seoData } from '../data/seo';
+
+export const prerender = true;
+
+const seo = seoData.home;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath={seo.canonicalPath}
+>
+  <!-- 2. Hero Section -->
+  <section class="relative bg-brand-black overflow-hidden border-b border-brand-border py-16 sm:py-24 lg:py-28">
+    <!-- Subtle Speedometer Arc / Gauge Background Graphic (Used Once in Hero) -->
+    <div class="absolute inset-0 pointer-events-none opacity-20 flex items-center justify-end pr-4 sm:pr-20 overflow-hidden" style="position: absolute; inset: 0; pointer-events: none; opacity: 0.18; overflow: hidden;" aria-hidden="true">
+      <svg style="max-width: 600px; max-height: 600px; width: 100%; height: auto;" class="w-[500px] sm:w-[700px] h-auto text-brand-red animate-pulse" viewBox="0 0 600 600" fill="none">
+        <circle cx="300" cy="300" r="240" stroke="currentColor" stroke-width="4" stroke-dasharray="12 12" />
+        <circle cx="300" cy="300" r="200" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.3" />
+        <path d="M 120 400 A 220 220 0 1 1 480 400" stroke="currentColor" stroke-width="12" stroke-linecap="round" />
+        <line x1="300" y1="300" x2="430" y2="180" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+        <circle cx="300" cy="300" r="16" fill="currentColor" />
+      </svg>
+    </div>
+
+    <!-- Angled Red Slash Accent Shapes -->
+    <div class="absolute top-0 right-0 w-32 h-32 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="bg-brand-red w-48 h-8 transform rotate-45 translate-x-12 -translate-y-8 opacity-70"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        
+        <!-- Credential Badge Pill -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-surface border border-brand-red/40 text-xs text-white mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand-red animate-ping"></span>
+          <span class="font-semibold text-brand-red">Licensed MTO Inspection Station</span>
+          <span class="text-brand-grey">· Mississauga</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white tracking-tight uppercase leading-[1.1]">
+          Your Car. <span class="text-brand-red">Our Passion.</span> Your Peace of Mind.
+        </h1>
+
+        <!-- Subline -->
+        <p class="mt-6 text-lg sm:text-xl text-brand-grey leading-relaxed max-w-2xl">
+          Mechanical & collision services in Mississauga. Licensed Motor Vehicle Inspection Station, Ontario Ministry of Transportation. Complete auto care built to last.
+        </p>
+
+        <!-- Two CTAs (Book a Slot and Call) -->
+        <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="/book"
+            class="inline-flex items-center justify-center px-8 py-4 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-base font-bold uppercase tracking-wider transition shadow-glow-red hover:shadow-glow-red-lg"
+          >
+            Book a Slot Online →
+          </a>
+          <a
+            href={businessConfig.contact.phoneTel}
+            class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-card bg-brand-charcoal hover:bg-brand-surface border border-brand-border text-white text-base font-bold transition"
+          >
+            <span class="text-brand-red text-xl">📞</span>
+            <span>Call {businessConfig.contact.phone}</span>
+          </a>
+        </div>
+
+        <!-- Trust Chips -->
+        <div class="mt-10 pt-8 border-t border-brand-border/60 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="flex items-center gap-2.5">
+            <span class="text-amber-400 text-lg">★</span>
+            <span class="text-white font-medium"><strong>4.8</strong> on Google (24 reviews)</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span class="text-brand-red text-lg">🛡️</span>
+            <span class="text-white font-medium">Works with all major insurers</span>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span class="text-brand-red text-lg">✓</span>
+            <span class="text-white font-medium">MTO licensed inspection station</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Promo Banner -->
+  <PromoBanner />
+
+  <!-- 4. Services Overview (All 7 Services) -->
+  <section class="py-20 bg-brand-charcoal" aria-labelledby="services-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-red mb-2">
+            <span>// Certified Automotive Workshop</span>
+          </div>
+          <h2 id="services-heading" class="text-3xl sm:text-4xl font-display font-bold text-white uppercase tracking-tight">
+            Our Services
+          </h2>
+          <div class="w-16 h-1 bg-brand-red mt-3 rounded-full"></div>
+        </div>
+        <p class="text-brand-grey text-sm max-w-md mt-4 md:mt-0">
+          From routine maintenance to heavy engine rebuilds and accredited collision repairs. Real photos and honest advice every time.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {servicesData.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="/services"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-sm font-semibold transition"
+        >
+          View Full Services Hub & Gallery →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Collision Callout (Blue-Free Dark Card in Red/Black/Grey Palette) -->
+  <section class="py-12 bg-brand-black" aria-label="Collision Insurance Services">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative overflow-hidden bg-brand-surface border-2 border-brand-red/80 rounded-card p-8 sm:p-12 shadow-glow-red">
+        <!-- Angled accent geometric corner -->
+        <div class="absolute -top-12 -right-12 w-36 h-36 bg-brand-red/10 rounded-full blur-xl pointer-events-none" aria-hidden="true"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="max-w-2xl text-center lg:text-left">
+            <span class="inline-block px-3 py-1 bg-brand-charcoal text-brand-red text-xs font-bold uppercase tracking-wider rounded border border-brand-border mb-3">
+              Direct Insurance Processing
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-white uppercase tracking-tight">
+              We Work With All Major Insurance Companies
+            </h2>
+            <p class="text-brand-grey text-sm sm:text-base mt-3 leading-relaxed">
+              Involved in an accident or parking lot collision in Mississauga? Under Ontario law, you have the right to choose your repair facility. We document the damage, submit electronic estimates directly to your insurer, and restore both body panels and mechanical systems to factory safety standards.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-4 flex-shrink-0 w-full sm:w-auto">
+            <a
+              href="/services/collision-repairs"
+              class="w-full sm:w-auto text-center px-6 py-3.5 rounded-card bg-brand-charcoal hover:bg-brand-border border border-brand-border text-white text-sm font-semibold transition"
+            >
+              How Collision Repair Works
+            </a>
+            <a
+              href="/book?service=Collision%20Work%20%2F%20Collision%20Repairs"
+              class="w-full sm:w-auto text-center px-6 py-3.5 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-sm font-bold uppercase tracking-wider transition shadow-glow-red"
+            >
+              Book an Insurance Estimate
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Why Choose RDM (Clean Alternating Light/Rhythm Section #F4F5F7) -->
+  <section class="py-20 bg-brand-light text-brand-charcoal" aria-labelledby="why-choose-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-red">
+          Why Royal Drive Mechanics
+        </span>
+        <h2 id="why-choose-heading" class="text-3xl sm:text-4xl font-display font-bold text-brand-black uppercase tracking-tight mt-1">
+          Complete Auto Care You Can Count On
+        </h2>
+        <div class="w-16 h-1 bg-brand-red mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <!-- 4 Points Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Point 1 -->
+        <div class="bg-white p-6 rounded-card border border-gray-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold mb-4">
+              🏛️
+            </div>
+            <h3 class="text-base font-bold text-brand-black uppercase tracking-tight">
+              MTO Licensed Station
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
+              Official Licensed Motor Vehicle Inspection Station accredited by the Ontario Ministry of Transportation.
+            </p>
+          </div>
+          <span class="text-[11px] font-semibold text-brand-red mt-4 block">Official Standards</span>
+        </div>
+
+        <!-- Point 2 -->
+        <div class="bg-white p-6 rounded-card border border-gray-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold mb-4">
+              🛡️
+            </div>
+            <h3 class="text-base font-bold text-brand-black uppercase tracking-tight">
+              Insurance Partnerships
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
+              Direct claims handling with all major Canadian insurance carriers, minimizing delays and out-of-pocket hassle.
+            </p>
+          </div>
+          <span class="text-[11px] font-semibold text-brand-red mt-4 block">Direct Billing</span>
+        </div>
+
+        <!-- Point 3 -->
+        <div class="bg-white p-6 rounded-card border border-gray-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold mb-4">
+              🤝
+            </div>
+            <h3 class="text-base font-bold text-brand-black uppercase tracking-tight">
+              Honest Advice
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
+              Clear explanations, no pressure, and transparent written estimates before any repair begins.
+            </p>
+          </div>
+          <span class="text-[11px] font-semibold text-brand-red mt-4 block">No Surprise Charges</span>
+        </div>
+
+        <!-- Point 4 -->
+        <div class="bg-white p-6 rounded-card border border-gray-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold mb-4">
+              ★
+            </div>
+            <h3 class="text-base font-bold text-brand-black uppercase tracking-tight">
+              Rated 4.8 on Google
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed">
+              Backed by verified local drivers in Mississauga and Clarkson who trust our craftsmanship and rates.
+            </p>
+          </div>
+          <span class="text-[11px] font-semibold text-brand-red mt-4 block">24 Google Reviews</span>
+        </div>
+      </div>
+
+      <!-- Certified Vehicle Inspection Centre Strip -->
+      <div class="mt-12 bg-white border border-gray-300 rounded-card p-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-center sm:text-left">
+          <div class="w-14 h-14 rounded-full bg-amber-100 border border-amber-300 text-amber-600 flex items-center justify-center text-2xl flex-shrink-0">
+            🏅
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-brand-black uppercase">
+              {businessConfig.credentials.certifiedInspectionCentre}
+            </h4>
+            <p class="text-xs sm:text-sm text-gray-600">
+              "{businessConfig.credentials.inspectionTagline}" — Rigorous vehicle inspections according to Ontario Passenger & Light-Duty Vehicle Safety Standards.
+            </p>
+          </div>
+        </div>
+
+        <a
+          href="/services/safety-inspections"
+          class="px-5 py-2.5 rounded-card bg-brand-charcoal hover:bg-brand-black text-white text-xs font-bold uppercase tracking-wider transition flex-shrink-0"
+        >
+          Safety Inspection Details →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. Reviews Section (Grid with Real Excerpts + Badge) -->
+  <section class="py-20 bg-brand-black border-t border-brand-border" aria-labelledby="reviews-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-surface border border-brand-border rounded-full text-xs text-white mb-2">
+            <span class="text-amber-400 font-bold">★ 4.8</span> · 24 Google reviews
+          </div>
+          <h2 id="reviews-heading" class="text-3xl sm:text-4xl font-display font-bold text-white uppercase tracking-tight">
+            Verified Google Reviews
+          </h2>
+          <div class="w-16 h-1 bg-brand-red mt-3 rounded-full"></div>
+        </div>
+
+        <a
+          href={businessConfig.googleReviews.googleLeaveReviewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 md:mt-0 inline-flex items-center gap-2 text-xs font-semibold text-brand-red hover:text-brand-red-hover underline"
+        >
+          Leave a review on Google ★ →
+        </a>
+      </div>
+
+      <!-- Real Excerpts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {reviewsData.map((review) => (
+          <ReviewCard review={review} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7b. Customer Testimonials (New Animated Carousel Section) -->
+  <TestimonialsCarousel
+    client:visible
+    testimonials={testimonialsData}
+    googleReviewUrl={businessConfig.googleReviews.googleReviewUrl}
+    googleLeaveReviewUrl={businessConfig.googleReviews.googleLeaveReviewUrl}
+  />
+
+  <!-- 8. How Booking Works (3 Steps) -->
+  <section class="py-20 bg-brand-black border-b border-brand-border" aria-labelledby="how-it-works-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-red">
+          Simple & Fast
+        </span>
+        <h2 id="how-it-works-heading" class="text-3xl sm:text-4xl font-display font-bold text-white uppercase tracking-tight mt-1">
+          How Booking Works
+        </h2>
+        <div class="w-16 h-1 bg-brand-red mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="bg-brand-surface border border-brand-border p-8 rounded-card relative">
+          <div class="text-4xl font-display font-black text-brand-red/30 mb-2">01</div>
+          <h3 class="text-lg font-bold text-white uppercase">Pick a Service</h3>
+          <p class="text-xs sm:text-sm text-brand-grey mt-2 leading-relaxed">
+            Choose from oil changes, brake repair, tune-ups, suspension, MTO safety inspections, or collision estimates.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-brand-surface border border-brand-border p-8 rounded-card relative">
+          <div class="text-4xl font-display font-black text-brand-red/30 mb-2">02</div>
+          <h3 class="text-lg font-bold text-white uppercase">Pick a Time</h3>
+          <p class="text-xs sm:text-sm text-brand-grey mt-2 leading-relaxed">
+            Select an open date and 60-minute bay slot that fits your schedule in real-time. Double-booking is guaranteed impossible.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-brand-surface border border-brand-border p-8 rounded-card relative">
+          <div class="text-4xl font-display font-black text-brand-red/30 mb-2">03</div>
+          <h3 class="text-lg font-bold text-white uppercase">Get Confirmation</h3>
+          <p class="text-xs sm:text-sm text-brand-grey mt-2 leading-relaxed">
+            Receive your unique booking reference, email confirmation, and calendar sync file (.ics). Drop your car off stress-free!
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="/book"
+          class="inline-flex items-center justify-center px-8 py-3.5 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-sm font-bold uppercase tracking-wider transition shadow-glow-red"
+        >
+          Book Your Appointment Now →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9. Visit Us Section (Address, Hours, Privacy-Friendly Map, Instagram) -->
+  <section class="py-20 bg-brand-charcoal" aria-labelledby="visit-us-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Details Column -->
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-red">
+            Visit Our Garage
+          </span>
+          <h2 id="visit-us-heading" class="text-3xl sm:text-4xl font-display font-bold text-white uppercase tracking-tight mt-1">
+            Conveniently Located in Mississauga
+          </h2>
+          <div class="w-16 h-1 bg-brand-red mt-3 rounded-full mb-6"></div>
+
+          <p class="text-sm text-brand-grey leading-relaxed mb-6">
+            Situated on Royal Windsor Drive near Clarkson and South Mississauga, our workshop is easily accessible from the QEW, serving Mississauga, Oakville, and Etobicoke drivers.
+          </p>
+
+          <div class="space-y-4 text-sm bg-brand-surface p-6 rounded-card border border-brand-border">
+            <div>
+              <span class="text-xs font-semibold text-brand-red uppercase block">Address</span>
+              <p class="text-white font-medium">{businessConfig.address.full}</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-brand-border/60">
+              <div>
+                <span class="text-xs font-semibold text-brand-red uppercase block">Phone / Contact</span>
+                <a href={businessConfig.contact.phoneTel} class="text-white font-bold hover:text-brand-red transition">
+                  {businessConfig.contact.phone}
+                </a>
+                <span class="text-xs text-brand-grey block">Contact: {businessConfig.contact.contactPerson}</span>
+              </div>
+              <div>
+                <span class="text-xs font-semibold text-brand-red uppercase block">Email</span>
+                <a href={businessConfig.contact.emailMailto} class="text-white hover:text-brand-red transition">
+                  {businessConfig.contact.email}
+                </a>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-brand-border/60">
+              <span class="text-xs font-semibold text-brand-red uppercase block">Operating Hours</span>
+              {businessConfig.displayHours.map((h) => (
+                <p class="text-xs text-brand-grey">{h.days}: <span class="text-white font-medium">{h.time}</span></p>
+              ))}
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap items-center gap-4">
+            <a
+              href={businessConfig.contact.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-xs font-semibold transition"
+            >
+              <span>📸 Follow on Instagram:</span>
+              <span class="text-brand-red">{businessConfig.contact.instagramHandle}</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Privacy-Friendly Map Column -->
+        <div>
+          <Map />
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

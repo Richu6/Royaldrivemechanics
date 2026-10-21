@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageLightbox from '../../components/islands/ImageLightbox';
+import { servicesData } from '../../data/services';
+import { getServiceImages } from '../../lib/servicesImagesLoader';
+import { businessConfig } from '../../config/business';
+import { seoData } from '../../data/seo';
+
+export const prerender = true;
+
+const seo = seoData.services;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath={seo.canonicalPath}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services' }
+  ]}
+>
+  <!-- Services Hub Hero -->
+  <section class="bg-brand-black border-b border-brand-border py-16 sm:py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(#D4202B_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-surface border border-brand-border rounded-full text-xs text-brand-grey mb-4">
+          <span class="text-brand-red font-bold">Comprehensive Auto Care</span> · Mississauga, ON
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-display font-extrabold text-white uppercase tracking-tight">
+          Mechanical & Collision Services
+        </h1>
+        <div class="w-20 h-1.5 bg-brand-red mt-4 mb-6 rounded-full"></div>
+        <p class="text-base sm:text-lg text-brand-grey leading-relaxed">
+          From quick OEM-spec synthetic oil changes and precision brake servicing to MTO safety certification and complete collision insurance restoration. Explore our full capabilities below.
+        </p>
+      </div>
+
+      <!-- Quick Navigation Chips for all 7 Services -->
+      <div class="mt-8 flex flex-wrap gap-2.5">
+        {servicesData.map((s) => (
+          <a
+            href={`#${s.slug}`}
+            class="px-3.5 py-1.5 rounded-full bg-brand-surface hover:bg-brand-red border border-brand-border hover:border-brand-red text-white text-xs font-semibold transition"
+          >
+            {s.name} ↓
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- "Why Choose RDM" Strip on Services -->
+  <div class="bg-brand-charcoal border-b border-brand-border py-4 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs text-brand-grey">
+      <div class="flex items-center gap-2">
+        <span class="text-brand-red">🏛️</span>
+        <span class="text-white font-medium">Licensed MTO Inspection Station</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-brand-red">🛡️</span>
+        <span class="text-white font-medium">Works with all major insurers</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-brand-red">🤝</span>
+        <span class="text-white font-medium">Honest advice & fair pricing</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-amber-400">★</span>
+        <span class="text-white font-medium">Rated 4.8 on Google (24 reviews)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Anchor Sections for All 7 Services -->
+  <div class="divide-y divide-brand-border bg-brand-black">
+    {servicesData.map((service, index) => {
+      const imagesResult = getServiceImages(service.slug, service.name);
+      const isEven = index % 2 === 0;
+
+      return (
+        <section
+          id={service.slug}
+          class={`py-16 sm:py-24 ${isEven ? 'bg-brand-black' : 'bg-brand-charcoal'} scroll-mt-20`}
+        >
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+              
+              <!-- Left/Top: Hero Image or Branded Placeholder -->
+              <div class="lg:col-span-5">
+                <div class="sticky top-28">
+                  <div class="aspect-[16/9] rounded-card overflow-hidden border border-brand-border bg-brand-surface relative shadow-lg">
+                    {imagesResult.hasCover ? (
+                      <img
+                        src={imagesResult.coverImage?.src}
+                        alt={imagesResult.coverImage?.alt || service.name}
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <!-- Clean Branded Placeholder -->
+                      <div class="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-brand-charcoal via-brand-surface to-brand-charcoal">
+                        <div class="w-16 h-16 rounded-full bg-brand-black/80 border border-brand-red/50 text-brand-red flex items-center justify-center text-3xl mb-3">
+                          ⚙️
+                        </div>
+                        <h4 class="text-base font-display font-bold text-white uppercase tracking-wider">
+                          {service.name}
+                        </h4>
+                        <div class="flex items-center gap-2 text-xs text-brand-grey mt-2">
+                          <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                          <span>Photos coming soon</span>
+                        </div>
+                        <p class="text-[11px] text-brand-grey/60 mt-3 max-w-xs">
+                          Real photos of Royal Drive Mechanics' workshop and repairs will appear here.
+                        </p>
+                      </div>
+                    )}
+                    <span class="absolute top-3 right-3 bg-brand-black/80 text-[11px] uppercase tracking-wider text-white px-2.5 py-1 rounded border border-brand-border">
+                      0{index + 1}
+                    </span>
+                  </div>
+
+                  <!-- Gallery Lightbox if Gallery Images Exist -->
+                  {imagesResult.galleryImages.length > 0 && (
+                    <div class="mt-4">
+                      <span class="text-xs uppercase tracking-wider text-brand-grey font-semibold block">
+                        Service Photo Gallery ({imagesResult.galleryImages.length}):
+                      </span>
+                      <ImageLightbox
+                        client:visible
+                        images={imagesResult.galleryImages}
+                        serviceName={service.name}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <!-- Right/Body: Details, Description, Inclusions & CTAs -->
+              <div class="lg:col-span-7">
+                <div class="inline-block px-3 py-1 bg-brand-surface border border-brand-red/40 rounded text-xs text-brand-red uppercase tracking-wider font-semibold mb-3">
+                  Service 0{index + 1}
+                </div>
+                
+                <h2 class="text-2xl sm:text-3xl font-display font-bold text-white uppercase tracking-tight">
+                  {service.name}
+                </h2>
+                
+                <p class="text-sm font-semibold text-brand-red mt-1 uppercase tracking-wider">
+                  {service.leadTagline}
+                </p>
+
+                <p class="text-sm sm:text-base text-brand-grey mt-4 leading-relaxed">
+                  {service.fullDescription}
+                </p>
+
+                <!-- Collision Repair Process Steps (for Collision Work) -->
+                {service.collisionSteps && (
+                  <div class="my-6 p-6 rounded-card bg-brand-surface border border-brand-border">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">
+                      How A Collision Repair Works:
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {service.collisionSteps.map((step) => (
+                        <div class="border-l-2 border-brand-red pl-3">
+                          <span class="text-xs font-bold text-brand-red">Step 0{step.step}</span>
+                          <h5 class="text-xs font-semibold text-white mt-0.5">{step.title}</h5>
+                          <p class="text-[11px] text-brand-grey mt-1">{step.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <!-- What's Included List -->
+                <div class="mt-6 pt-6 border-t border-brand-border/60">
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">
+                    What's Included in This Service:
+                  </h4>
+                  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-brand-grey">
+                    {service.whatsIncluded.map((item) => (
+                      <li class="flex items-start gap-2 bg-brand-surface/40 p-2.5 rounded border border-brand-border/40">
+                        <span class="text-brand-red font-bold">✓</span>
+                        <span class="text-brand-white">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <!-- Action CTAs -->
+                <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                  <a
+                    href={`/book?service=${encodeURIComponent(service.name)}`}
+                    class="inline-flex items-center justify-center px-6 py-3.5 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition shadow-glow-red"
+                  >
+                    Book This Service →
+                  </a>
+                  <a
+                    href={`/services/${service.slug}`}
+                    class="inline-flex items-center justify-center px-6 py-3.5 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-xs sm:text-sm font-semibold transition"
+                  >
+                    Learn More & FAQs ↗
+                  </a>
+                  <a
+                    href={businessConfig.contact.phoneTel}
+                    class="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-card text-brand-grey hover:text-white text-xs font-medium transition"
+                  >
+                    <span>📞 Ask Mirshad:</span>
+                    <span class="text-white font-semibold">{businessConfig.contact.phone}</span>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      );
+    })}
+  </div>
+
+  <!-- "Not Sure What Your Car Needs?" Triage Box -->
+  <section class="py-16 bg-brand-charcoal border-t border-brand-border" aria-labelledby="triage-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="p-8 sm:p-12 rounded-card bg-brand-surface border-2 border-brand-border relative overflow-hidden">
+        <span class="inline-block px-3 py-1 bg-brand-charcoal text-brand-red text-xs font-bold uppercase tracking-wider rounded border border-brand-border mb-3">
+          Free Diagnostic Consultation
+        </span>
+        <h2 id="triage-heading" class="text-2xl sm:text-3xl font-display font-bold text-white uppercase tracking-tight">
+          Not Sure What Your Car Needs?
+        </h2>
+        <p class="text-sm sm:text-base text-brand-grey mt-3 max-w-xl mx-auto leading-relaxed">
+          Hearing an unfamiliar squeak, feeling a steering wobble, or seeing a warning light? Get in touch with Mirshad directly. We'll listen to the symptoms and give you honest, no-pressure guidance.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={businessConfig.contact.phoneTel}
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-card bg-brand-charcoal hover:bg-brand-border border border-brand-border text-white text-sm font-bold transition"
+          >
+            📞 Call 365-524-2003
+          </a>
+          <a
+            href={businessConfig.contact.enableWhatsApp ? businessConfig.contact.whatsappUrl : businessConfig.contact.smsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-sm font-bold transition"
+          >
+            💬 Send a Message
+          </a>
+          <a
+            href="/book"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-sm font-bold uppercase tracking-wider transition shadow-glow-red"
+          >
+            Book an Inspection Slot
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

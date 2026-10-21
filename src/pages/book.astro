@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BookingWidget from '../components/islands/BookingWidget';
+import { seoData } from '../data/seo';
+import { businessConfig } from '../config/business';
+
+const seo = seoData.book;
+const initialService = Astro.url.searchParams.get('service') || '';
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath={seo.canonicalPath}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Book a Slot', url: '/book' }
+  ]}
+>
+  <section class="py-16 sm:py-20 bg-brand-black min-h-[85vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Introduction -->
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-surface border border-brand-red/40 rounded-full text-xs text-white mb-3">
+          <span class="text-brand-red font-bold">Real-Time Bay Availability</span> · Mississauga
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white uppercase tracking-tight">
+          Reserve Your Service Slot
+        </h1>
+        <div class="w-16 h-1 bg-brand-red mx-auto mt-3 rounded-full"></div>
+        <p class="text-sm sm:text-base text-brand-grey mt-4 leading-relaxed">
+          Select your service, choose an available 60-minute bay slot, and get instant confirmation. Never double-booked.
+        </p>
+      </div>
+
+      <!-- Main Booking Widget Preact Island -->
+      <BookingWidget
+        client:load
+        initialService={initialService}
+      />
+
+      <!-- Assistance Callout -->
+      <div class="max-w-2xl mx-auto mt-12 p-6 rounded-card bg-brand-charcoal border border-brand-border text-center text-xs text-brand-grey">
+        <p class="text-white font-medium text-sm mb-1">
+          Prefer booking over the phone or have emergency breakdown questions?
+        </p>
+        <p class="mb-4">
+          Mirshad is available during workshop hours at <strong class="text-brand-red">{businessConfig.contact.phone}</strong>.
+        </p>
+        <a
+          href={businessConfig.contact.phoneTel}
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-xs font-bold transition"
+        >
+          📞 Call {businessConfig.contact.phone} Now
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

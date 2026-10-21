@@ -1,0 +1,356 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageLightbox from '../../components/islands/ImageLightbox';
+import { servicesData, type ServiceDetail } from '../../data/services';
+import { getServiceImages } from '../../lib/servicesImagesLoader';
+import { businessConfig } from '../../config/business';
+import { seoData } from '../../data/seo';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return servicesData.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: ServiceDetail;
+}
+
+const { service } = Astro.props;
+const seo = seoData[service.slug] || {
+  title: `${service.name} in Mississauga | Royal Drive Mechanics`,
+  description: `${service.shortDescription} Call 365-524-2003 or book online with Royal Drive Mechanics.`,
+  canonicalPath: `/services/${service.slug}`,
+};
+
+const imagesResult = getServiceImages(service.slug, service.name);
+const relatedServices = servicesData.filter((s) => service.relatedServiceSlugs.includes(s.slug));
+
+// Service schema linking to LocalBusiness provider
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `https://royaldrivemechanics.ca/services/${service.slug}/#service`,
+  name: service.name,
+  description: service.shortDescription,
+  serviceType: service.name,
+  provider: {
+    '@id': 'https://royaldrivemechanics.ca/#business'
+  },
+  areaServed: businessConfig.serviceAreas.map((area) => ({
+    '@type': 'City',
+    name: area
+  })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `${service.name} Catalog`,
+    itemListElement: service.whatsIncluded.map((item, idx) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: item
+      }
+    }))
+  }
+};
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services' },
+  { name: service.name, url: `/services/${service.slug}` }
+];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  canonicalPath={seo.canonicalPath}
+  breadcrumbs={breadcrumbs}
+  serviceSchema={serviceSchema}
+  faqSchema={service.faqs}
+>
+  <!-- Breadcrumb Navigation Bar -->
+  <nav aria-label="Breadcrumb" class="bg-brand-charcoal border-b border-brand-border py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ol class="flex items-center space-x-2 text-xs text-brand-grey">
+        <li>
+          <a href="/" class="hover:text-white transition">Home</a>
+        </li>
+        <li class="text-brand-border">/</li>
+        <li>
+          <a href="/services" class="hover:text-white transition">Services</a>
+        </li>
+        <li class="text-brand-border">/</li>
+        <li class="text-white font-medium truncate" aria-current="page">
+          {service.name}
+        </li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Service Landing Hero -->
+  <section class="bg-brand-black border-b border-brand-border py-16 sm:py-20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-surface border border-brand-red/40 rounded-full text-xs text-white mb-4">
+            <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+            <span class="font-semibold text-brand-red">Mississauga Automotive Care</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-display font-black text-white uppercase tracking-tight leading-[1.1]">
+            {service.name} in Mississauga
+          </h1>
+
+          <p class="text-base sm:text-lg font-semibold text-brand-red mt-3 uppercase tracking-wider">
+            {service.leadTagline}
+          </p>
+
+          <p class="text-sm sm:text-base text-brand-grey mt-4 leading-relaxed max-w-2xl">
+            {service.fullDescription}
+          </p>
+
+          <!-- CTAs -->
+          <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <a
+              href={`/book?service=${encodeURIComponent(service.name)}`}
+              class="inline-flex items-center justify-center px-7 py-3.5 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-sm font-bold uppercase tracking-wider transition shadow-glow-red"
+            >
+              Book {service.shortName} Slot →
+            </a>
+            <a
+              href={businessConfig.contact.phoneTel}
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-sm font-semibold transition"
+            >
+              📞 Call 365-524-2003
+            </a>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-brand-border/60 flex flex-wrap items-center gap-6 text-xs text-brand-grey">
+            <span>🛡️ Works with all major insurers</span>
+            <span>✓ Licensed MTO Inspection Station</span>
+            <span>★ Rated 4.8 on Google</span>
+          </div>
+        </div>
+
+        <!-- Hero Image or Branded Placeholder -->
+        <div class="lg:col-span-5">
+          <div class="aspect-[16/9] rounded-card overflow-hidden border border-brand-border bg-brand-surface relative shadow-xl">
+            {imagesResult.hasCover ? (
+              <img
+                src={imagesResult.coverImage?.src}
+                alt={imagesResult.coverImage?.alt || `${service.name} at Royal Drive Mechanics, Mississauga`}
+                loading="eager"
+                decoding="async"
+                class="w-full h-full object-cover"
+              />
+            ) : (
+              <div class="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-brand-charcoal via-brand-surface to-brand-charcoal">
+                <div class="w-16 h-16 rounded-full bg-brand-black/80 border border-brand-red/50 text-brand-red flex items-center justify-center text-3xl mb-3">
+                  ⚙️
+                </div>
+                <h3 class="text-base font-display font-bold text-white uppercase tracking-wider">
+                  {service.name}
+                </h3>
+                <div class="flex items-center gap-2 text-xs text-brand-grey mt-2">
+                  <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                  <span>Photos coming soon</span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- In-Depth Content & Diagnosis (300-500 words unique copy) -->
+  <section class="py-16 sm:py-20 bg-brand-charcoal border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Long Content Body -->
+        <div class="lg:col-span-8">
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-white uppercase tracking-tight mb-6">
+            Expert Automotive Care on Royal Windsor Drive
+          </h2>
+          <div class="space-y-4 text-sm sm:text-base text-brand-grey leading-relaxed">
+            {service.longContent.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+
+          <!-- Collision steps if applicable -->
+          {service.collisionSteps && (
+            <div class="my-8 p-6 rounded-card bg-brand-surface border border-brand-border">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-white mb-4">
+                Step-by-Step Collision Repair Procedure:
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {service.collisionSteps.map((step) => (
+                  <div class="border-l-2 border-brand-red pl-3">
+                    <span class="text-xs font-bold text-brand-red">Step 0{step.step}</span>
+                    <h4 class="text-xs font-semibold text-white mt-0.5">{step.title}</h4>
+                    <p class="text-[11px] text-brand-grey mt-1">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- What's Included -->
+          <div class="mt-10 pt-8 border-t border-brand-border/60">
+            <h3 class="text-lg font-bold text-white uppercase tracking-tight mb-4">
+              What's Included in Our {service.shortName} Package
+            </h3>
+            <ul class="space-y-2.5 text-sm text-brand-grey">
+              {service.whatsIncluded.map((item) => (
+                <li class="flex items-start gap-2.5 bg-brand-surface p-3 rounded-card border border-brand-border/40">
+                  <span class="text-brand-red font-bold">✓</span>
+                  <span class="text-white">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Photo Gallery (if photos exist) -->
+          {imagesResult.galleryImages.length > 0 && (
+            <div class="mt-12 pt-8 border-t border-brand-border/60">
+              <h3 class="text-lg font-bold text-white uppercase tracking-tight mb-2">
+                Workshop & Repair Gallery
+              </h3>
+              <p class="text-xs text-brand-grey mb-4">
+                Click any real photo below to view in high definition.
+              </p>
+              <ImageLightbox
+                client:visible
+                images={imagesResult.galleryImages}
+                serviceName={service.name}
+              />
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar: Signs You Need This & Direct Contact -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Signs You Need This Service Box -->
+          <div class="bg-brand-surface border border-brand-red/60 rounded-card p-6 shadow-glow-red">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-white mb-3 flex items-center gap-2">
+              <span class="text-brand-red text-base">⚠</span>
+              <span>Signs You Need This Service</span>
+            </h3>
+            <ul class="space-y-2.5 text-xs text-brand-grey">
+              {service.signsYouNeedThis.map((sign) => (
+                <li class="flex items-start gap-2 border-b border-brand-border/40 pb-2 last:border-0 last:pb-0">
+                  <span class="text-brand-red font-bold">•</span>
+                  <span>{sign}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Direct Triage Box -->
+          <div class="bg-brand-surface border border-brand-border rounded-card p-6">
+            <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-2">
+              Speak Directly with Mirshad
+            </h4>
+            <p class="text-xs text-brand-grey leading-relaxed mb-4">
+              Have specific questions about your vehicle's condition or need a quick price estimate?
+            </p>
+            <a
+              href={businessConfig.contact.phoneTel}
+              class="w-full flex items-center justify-center gap-2 py-3 rounded-card bg-brand-charcoal hover:bg-brand-border border border-brand-border text-white text-xs font-bold transition mb-2"
+            >
+              📞 Call {businessConfig.contact.phone}
+            </a>
+            <a
+              href={businessConfig.contact.enableWhatsApp ? businessConfig.contact.whatsappUrl : businessConfig.contact.smsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full flex items-center justify-center gap-2 py-3 rounded-card bg-brand-surface hover:bg-brand-border border border-brand-border text-white text-xs font-semibold transition"
+            >
+              💬 WhatsApp / SMS Message
+            </a>
+          </div>
+
+          <!-- Workshop Hours Box -->
+          <div class="bg-brand-surface border border-brand-border rounded-card p-6 text-xs text-brand-grey">
+            <span class="text-white font-semibold uppercase block mb-2">Workshop Hours</span>
+            {businessConfig.displayHours.map((h) => (
+              <p class="text-[11px] py-1 border-b border-brand-border/40 last:border-0 flex justify-between">
+                <span>{h.days}:</span>
+                <span class="text-white font-medium">{h.time}</span>
+              </p>
+            ))}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3-5 Short FAQs with Visible Schema Markup -->
+  <section class="py-16 sm:py-20 bg-brand-black border-b border-brand-border" aria-labelledby="faqs-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-red">
+          Common Questions
+        </span>
+        <h2 id="faqs-heading" class="text-2xl sm:text-3xl font-display font-bold text-white uppercase tracking-tight mt-1">
+          Frequently Asked Questions
+        </h2>
+        <div class="w-16 h-1 bg-brand-red mx-auto mt-3 rounded-full"></div>
+      </div>
+
+      <div class="space-y-4">
+        {service.faqs.map((faq) => (
+          <div class="bg-brand-surface border border-brand-border rounded-card p-6">
+            <h3 class="text-base font-bold text-white flex items-start gap-2.5">
+              <span class="text-brand-red font-bold">Q.</span>
+              <span>{faq.question}</span>
+            </h3>
+            <p class="text-sm text-brand-grey mt-3 pl-6 leading-relaxed">
+              {faq.answer}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Strip -->
+  <section class="py-16 bg-brand-charcoal" aria-labelledby="related-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="related-heading" class="text-xl sm:text-2xl font-display font-bold text-white uppercase tracking-tight mb-8">
+        Related Auto Services
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {relatedServices.map((rel) => (
+          <a
+            href={`/services/${rel.slug}`}
+            class="bg-brand-surface border border-brand-border hover:border-brand-red p-6 rounded-card transition group flex flex-col justify-between"
+          >
+            <div>
+              <h3 class="text-base font-bold text-white group-hover:text-brand-red transition">
+                {rel.name} →
+              </h3>
+              <p class="text-xs text-brand-grey mt-2 line-clamp-2">
+                {rel.shortDescription}
+              </p>
+            </div>
+            <span class="text-[11px] font-semibold text-brand-red mt-4 block">
+              Learn More & Book Slot
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

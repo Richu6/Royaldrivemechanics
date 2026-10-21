@@ -1,0 +1,142 @@
+---
+import { businessConfig } from '../config/business';
+
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/book', label: 'Book a Slot' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 bg-brand-black/95 backdrop-blur-md border-b border-brand-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo Branding -->
+      <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-red rounded p-1">
+        <!-- Logo Image with clean fallback -->
+        <div class="h-12 w-auto flex items-center justify-center" style="max-height: 48px;">
+          <img
+            src="/brand/rdm-logo-transparent.png"
+            alt="Royal Drive Mechanics Logo"
+            height="48"
+            style="height: 48px; max-height: 48px; width: auto; object-fit: contain;"
+            class="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-102"
+            onerror="this.style.display='none'; document.getElementById('logo-wordmark-fallback').style.display='flex';"
+          />
+          <div
+            id="logo-wordmark-fallback"
+            class="hidden flex-col justify-center font-display font-bold leading-none tracking-tight"
+          >
+            <span class="text-brand-red text-xl sm:text-2xl font-black italic tracking-widest">RDM</span>
+            <span class="text-white text-xs sm:text-sm tracking-wider uppercase">Royal Drive Mechanics</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium" aria-label="Main Navigation">
+        {navLinks.map((link) => {
+          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class={`transition-colors py-1 border-b-2 font-medium ${
+                isActive
+                  ? 'text-white border-brand-red font-semibold'
+                  : 'text-brand-grey border-transparent hover:text-white hover:border-brand-border'
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Desktop Action CTAs (Call & Book) -->
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Direct Call Button -->
+        <a
+          href={businessConfig.contact.phoneTel}
+          class="flex items-center gap-2 text-sm font-semibold text-white px-3.5 py-2 rounded-card border border-brand-border bg-brand-charcoal hover:border-brand-grey hover:bg-brand-surface transition"
+          aria-label={`Call ${businessConfig.contact.phone}`}
+        >
+          <span class="text-brand-red text-base">📞</span>
+          <span>{businessConfig.contact.phone}</span>
+        </a>
+
+        <!-- Book a Slot Button -->
+        <a
+          href="/book"
+          class="inline-flex items-center justify-center px-5 py-2.5 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-glow-red hover:shadow-glow-red-lg"
+        >
+          Book a Slot
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex items-center gap-3 md:hidden">
+        <a
+          href={businessConfig.contact.phoneTel}
+          class="p-2 text-brand-red text-lg border border-brand-border rounded bg-brand-charcoal"
+          aria-label="Call Royal Drive Mechanics"
+        >
+          📞
+        </a>
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="p-2.5 rounded-card border border-brand-border text-brand-grey hover:text-white hover:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-brand-border bg-brand-charcoal px-4 pt-3 pb-6 space-y-3">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="block px-3 py-2.5 rounded-card text-base font-semibold text-white hover:bg-brand-surface hover:text-brand-red border border-transparent hover:border-brand-border"
+      >
+        {link.label}
+      </a>
+    ))}
+    <div class="pt-4 border-t border-brand-border/60 flex flex-col gap-3">
+      <a
+        href={businessConfig.contact.phoneTel}
+        class="flex items-center justify-center gap-2 py-3 rounded-card bg-brand-surface border border-brand-border text-white text-sm font-semibold"
+      >
+        📞 Call {businessConfig.contact.phone}
+      </a>
+      <a
+        href="/book"
+        class="flex items-center justify-center py-3 rounded-card bg-brand-red text-white text-sm font-bold uppercase tracking-wider shadow-glow-red"
+      >
+        Book a Slot
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  if (menuBtn && menu) {
+    menuBtn.addEventListener('click', () => {
+      const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

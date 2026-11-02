@@ -3,7 +3,7 @@ import urllib.request
 import urllib.error
 import sys
 
-TARGET = 'http://127.0.0.1:4321'
+TARGET = 'http://127.0.0.1:8788'
 
 class ProxyHandler(BaseHTTPRequestHandler):
     protocol_version = 'HTTP/1.1'
@@ -26,7 +26,7 @@ class ProxyHandler(BaseHTTPRequestHandler):
         for k, v in self.headers.items():
             if k.lower() not in ['host', 'connection']:
                 headers[k] = v
-        headers['Host'] = 'localhost:4321'
+        headers['Host'] = 'localhost:8788'
 
         data = None
         if 'content-length' in self.headers:

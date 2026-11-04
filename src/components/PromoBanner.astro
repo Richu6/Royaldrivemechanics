@@ -1,0 +1,41 @@
+---
+import { businessConfig } from '../config/business';
+
+const promo = businessConfig.promotion;
+---
+
+{promo.enabled && (
+  <aside aria-label="Special Workshop Promotion" class="relative overflow-hidden bg-gradient-to-r from-brand-charcoal via-brand-surface to-brand-charcoal border-y border-brand-red/40 py-4 px-4 sm:px-6">
+    <!-- Subtle angled accent lines -->
+    <div class="absolute inset-y-0 left-0 w-2 bg-brand-red"></div>
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      
+      <div class="flex flex-col sm:flex-row items-center gap-3">
+        <span class="inline-flex items-center px-2.5 py-1 rounded bg-brand-red text-white text-xs font-black uppercase tracking-wider shadow-sm">
+          {promo.badge}
+        </span>
+        <div>
+          <h2 class="text-white font-display font-bold text-base sm:text-lg tracking-tight">
+            {promo.title}
+          </h2>
+          <p class="text-xs text-brand-grey mt-0.5">
+            {promo.description}{' '}
+            <a href={promo.termsLink} class="text-white underline hover:text-brand-red font-medium transition">
+              {promo.termsNote} →
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <a
+          href="/book"
+          class="inline-flex items-center justify-center px-4 py-2 rounded-card bg-brand-red hover:bg-brand-red-hover text-white text-xs font-bold uppercase tracking-wider transition shadow-glow-red"
+        >
+          Claim 15% Off
+        </a>
+      </div>
+
+    </div>
+  </aside>
+)}

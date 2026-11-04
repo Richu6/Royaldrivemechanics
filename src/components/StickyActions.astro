@@ -1,0 +1,45 @@
+---
+import { businessConfig } from '../config/business';
+---
+
+<!-- Mobile Sticky Bottom Action Bar (Call · WhatsApp · Book) -->
+<nav
+  aria-label="Quick Actions"
+  class="fixed bottom-0 inset-x-0 z-40 bg-brand-charcoal/95 backdrop-blur-md border-t border-brand-border md:hidden px-3 py-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom))]"
+>
+  <div class="grid grid-cols-3 gap-2 max-w-md mx-auto">
+    <!-- Call Action -->
+    <a
+      href={businessConfig.contact.phoneTel}
+      class="flex flex-col items-center justify-center py-2 px-1 rounded-card bg-brand-surface border border-brand-border hover:border-brand-red text-white text-xs font-semibold transition active:scale-95"
+      aria-label="Call Royal Drive Mechanics"
+    >
+      <span class="text-base mb-0.5">📞</span>
+      <span>Call</span>
+    </a>
+
+    <!-- WhatsApp Message Action -->
+    <a
+      href={businessConfig.contact.whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex flex-col items-center justify-center py-2 px-1 rounded-card bg-brand-surface border border-[#25D366]/40 hover:border-[#25D366] text-white text-xs font-semibold transition active:scale-95"
+      aria-label="WhatsApp Royal Drive Mechanics"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175.216 175.552" class="w-4 h-4 mb-0.5">
+        <path fill="#25D366" d="M87.608 0C39.277 0 0 39.277 0 87.608c0 15.331 4.002 29.737 11.012 42.227L0 175.552l46.738-11.012c12.025 6.344 25.693 9.964 40.217 9.964h.004c48.327 0 87.608-39.277 87.608-87.608C175.216 39.277 135.935 0 87.608 0zm0 160.512h-.004c-13.036 0-25.803-3.508-36.956-10.12l-2.65-1.573-27.457 6.47 6.566-26.945-1.723-2.763c-7.248-11.527-11.077-24.858-11.077-38.57 0-39.872 32.447-72.32 72.32-72.32 19.31 0 37.465 7.527 51.103 21.195 13.638 13.668 21.14 31.835 21.136 51.16-.004 39.872-32.447 72.466-72.259 72.466zm39.691-54.155c-2.175-1.088-12.867-6.347-14.863-7.073-1.996-.727-3.45-1.088-4.904 1.088-1.454 2.175-5.63 7.073-6.901 8.524-1.271 1.451-2.542 1.633-4.717.544-2.175-1.088-9.178-3.382-17.483-10.793-6.463-5.77-10.826-12.89-12.097-15.065-1.271-2.175-.136-3.351.955-4.432.98-.973 2.175-2.538 3.263-3.809.544-.727.907-1.36 1.36-2.266.453-.907.227-1.723-.113-2.448-.34-.726-4.904-11.811-6.718-16.166-1.769-4.249-3.565-3.673-4.904-3.74-1.271-.063-2.723-.076-4.177-.076-1.454 0-3.81.544-5.81 2.72-1.996 2.175-7.627 7.436-7.627 18.135 0 10.7 7.809 21.035 8.897 22.487 1.088 1.453 15.365 23.476 37.229 32.913 5.205 2.248 9.269 3.59 12.44 4.597 5.228 1.664 9.987 1.428 13.745.866 4.192-.634 12.867-5.267 14.68-10.35 1.814-5.085 1.814-9.435 1.27-10.35-.544-.908-1.996-1.453-4.176-2.538z"/>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+
+    <!-- Book Action -->
+    <a
+      href="/book"
+      class="flex flex-col items-center justify-center py-2 px-1 rounded-card bg-brand-red text-white text-xs font-bold uppercase tracking-wider shadow-glow-red transition active:scale-95"
+      aria-label="Book a Service Slot"
+    >
+      <span class="text-base mb-0.5">📅</span>
+      <span>Book</span>
+    </a>
+  </div>
+</nav>

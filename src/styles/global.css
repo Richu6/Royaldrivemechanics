@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0A0A0A;
+    color: #FFFFFF;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0A0A0A;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Saira', system-ui, sans-serif;
+  }
+
+  /* Accessible focus states */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #D4202B;
+    outline-offset: 2px;
+  }
+
+  img {
+    user-select: none;
+    -webkit-user-drag: none;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Custom Utilities */
+.speed-angle {
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+/* ─── Minimal Scroll-Reveal Animations ───────────────────────────────────── */
+
+/* Base state: elements start hidden/shifted */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.reveal-left {
+  transform: translateX(-20px);
+}
+
+.reveal.reveal-right {
+  transform: translateX(20px);
+}
+
+.reveal.reveal-scale {
+  transform: scale(0.96) translateY(10px);
+}
+
+/* Visible state (added by IntersectionObserver) */
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children of a reveal-group */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-group.is-visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+.reveal-group.is-visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 80ms; }
+.reveal-group.is-visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 160ms; }
+.reveal-group.is-visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 240ms; }
+.reveal-group.is-visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 320ms; }
+.reveal-group.is-visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 400ms; }
+.reveal-group.is-visible > *:nth-child(n+7) { opacity: 1; transform: none; transition-delay: 480ms; }
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-group > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

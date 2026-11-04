@@ -1,0 +1,28 @@
+---
+import type { ReviewExcerpt } from '../data/reviews';
+
+interface Props {
+  review: ReviewExcerpt;
+}
+
+const { review } = Astro.props;
+---
+
+<div class="bg-brand-surface border border-brand-border p-6 rounded-card flex flex-col justify-between hover:border-brand-red/60 transition">
+  <div>
+    <!-- Google Stars Motif -->
+    <div class="flex items-center gap-1 text-amber-400 text-sm mb-3" aria-label="5 out of 5 stars">
+      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+    </div>
+    <blockquote class="text-white text-sm sm:text-base italic leading-relaxed mb-4">
+      "{review.quote}"
+    </blockquote>
+  </div>
+
+  <div class="border-t border-brand-border/60 pt-3 flex items-center justify-between text-xs text-brand-grey">
+    <span class="font-semibold text-white">{review.author}</span>
+    <span class="inline-flex items-center gap-1 text-[11px] bg-brand-charcoal px-2 py-0.5 rounded border border-brand-border/60">
+      <span class="text-brand-red">G</span> {review.source}
+    </span>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 /* empty css                                */
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead, h as addAttribute } from '../chunks/astro/server_BfFI7yxH.mjs';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_nOKoNsR3.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_D3dGXdD2.mjs';
 import { d, h, u } from '../chunks/jsxRuntime.module_CUMDQ0x3.mjs';
 import { g as generateIcsDataUrl } from '../chunks/ics_v4tzH2Fq.mjs';
 import { S } from '../chunks/_@astro-renderers_CfQf9S2F.mjs';

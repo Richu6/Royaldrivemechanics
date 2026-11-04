@@ -1,13 +1,13 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
 /* empty css                                */
 import { e as createAstro, f as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead, h as addAttribute } from '../chunks/astro/server_BfFI7yxH.mjs';
-import { $ as $$BaseLayout } from '../chunks/BaseLayout_CBF2eo35.mjs';
+import { $ as $$BaseLayout } from '../chunks/BaseLayout_nOKoNsR3.mjs';
 import { d, h, u } from '../chunks/jsxRuntime.module_CUMDQ0x3.mjs';
-import { g as generateIcsDataUrl } from '../chunks/ics_DiaXBE1A.mjs';
+import { g as generateIcsDataUrl } from '../chunks/ics_v4tzH2Fq.mjs';
 import { S } from '../chunks/_@astro-renderers_CfQf9S2F.mjs';
 export { r as renderers } from '../chunks/_@astro-renderers_CfQf9S2F.mjs';
 import { s as seoData } from '../chunks/seo_y-YGCs9Y.mjs';
-import { b as businessConfig } from '../chunks/business_C17_wgfw.mjs';
+import { b as businessConfig } from '../chunks/business_CgHEbruk.mjs';
 
 function BookingWidget({
   initialService = "",
@@ -358,7 +358,7 @@ function BookingWidget({
         className: "w-full bg-brand-charcoal border border-brand-border rounded-card px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-brand-red text-sm"
       }), u("p", {
         className: "text-xs text-brand-grey mt-1",
-        children: "Open Mon–Sat 8:00 AM – 6:00 PM (Closed Sundays & statutory holidays). Book up to 60 days ahead."
+        children: "Open Mon-Sat 10:00 AM - 6:00 PM (Closed Sundays & statutory holidays). Book up to 60 days ahead."
       })]
     }), u("div", {
       className: "mb-8",
@@ -561,12 +561,12 @@ const $$Book = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": seo.title, "description": seo.description, "canonicalPath": seo.canonicalPath, "breadcrumbs": [
     { name: "Home", url: "/" },
     { name: "Book a Slot", url: "/book" }
-  ] }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="py-16 sm:py-20 bg-brand-black min-h-[85vh]"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <!-- Top Introduction --> <div class="text-center max-w-2xl mx-auto mb-10"> <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-surface border border-brand-red/40 rounded-full text-xs text-white mb-3"> <span class="text-brand-red font-bold">Real-Time Bay Availability</span> · Mississauga
+  ] }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="py-16 sm:py-20 bg-brand-black min-h-[85vh]"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <!-- Top Introduction --> <div class="text-center max-w-2xl mx-auto mb-10 reveal"> <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-surface border border-brand-red/40 rounded-full text-xs text-white mb-3"> <span class="text-brand-red font-bold">Real-Time Bay Availability</span> · Mississauga
 </div> <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white uppercase tracking-tight">
 Reserve Your Service Slot
 </h1> <div class="w-16 h-1 bg-brand-red mx-auto mt-3 rounded-full"></div> <p class="text-sm sm:text-base text-brand-grey mt-4 leading-relaxed">
 Select your service, choose an available 60-minute bay slot, and get instant confirmation. Never double-booked.
-</p> </div> <!-- Main Booking Widget Preact Island --> ${renderComponent($$result2, "BookingWidget", BookingWidget, { "client:load": true, "initialService": initialService, "client:component-hydration": "load", "client:component-path": "C:/Users/sebin/OneDrive/Documents/Desktop/royaldrivemechanics/src/components/islands/BookingWidget", "client:component-export": "default" })} <!-- Assistance Callout --> <div class="max-w-2xl mx-auto mt-12 p-6 rounded-card bg-brand-charcoal border border-brand-border text-center text-xs text-brand-grey"> <p class="text-white font-medium text-sm mb-1">
+</p> </div> <!-- Main Booking Widget Preact Island --> <div class="reveal">${renderComponent($$result2, "BookingWidget", BookingWidget, { "client:load": true, "initialService": initialService, "client:component-hydration": "load", "client:component-path": "C:/Users/sebin/OneDrive/Documents/Desktop/royaldrivemechanics/src/components/islands/BookingWidget", "client:component-export": "default" })}\`r\`n </div>\`r\`n\`r\`n <!-- Assistance Callout --> <div class="max-w-2xl mx-auto mt-12 p-6 rounded-card bg-brand-charcoal border border-brand-border text-center text-xs text-brand-grey"> <p class="text-white font-medium text-sm mb-1">
 Prefer booking over the phone or have emergency breakdown questions?
 </p> <p class="mb-4">
 Mirshad is available during workshop hours at <strong class="text-brand-red">${businessConfig.contact.phone}</strong>.

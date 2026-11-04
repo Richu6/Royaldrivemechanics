@@ -46,7 +46,7 @@ export const businessConfig = {
     emailMailto: "mailto:royaldrivemechanics@gmail.com",
     instagramHandle: "@Royaldrive_mechanics",
     instagramUrl: "https://instagram.com/Royaldrive_mechanics",
-    enableWhatsApp: true, // Default ON - TO CONFIRM WITH OWNER if number is on WhatsApp
+    enableWhatsApp: true,
     whatsappUrl: "https://wa.me/13655242003?text=Hi%20Royal%20Drive%20Mechanics%2C%20I%27d%20like%20to%20ask%20about...",
     smsUrl: "sms:+13655242003",
   },
@@ -62,19 +62,18 @@ export const businessConfig = {
     inspectionTagline: "Drive with confidence.",
     insuranceStatus: "Works directly with all major insurance companies",
   },
-  // NOTE: Closing time is confirmed at 6:00 pm. Opening time and days are TO CONFIRM WITH OWNER.
-  // Placeholder defaults: Mon-Sat 8:00 AM - 6:00 PM, Sunday closed.
+  // Confirmed hours: Mon-Sat 10:00 AM - 6:00 PM, Sunday closed.
   hours: {
-    monday:    { open: "08:00", close: "18:00", closed: false },
-    tuesday:   { open: "08:00", close: "18:00", closed: false },
-    wednesday: { open: "08:00", close: "18:00", closed: false },
-    thursday:  { open: "08:00", close: "18:00", closed: false },
-    friday:    { open: "08:00", close: "18:00", closed: false },
-    saturday:  { open: "08:00", close: "18:00", closed: false },
+    monday:    { open: "10:00", close: "18:00", closed: false },
+    tuesday:   { open: "10:00", close: "18:00", closed: false },
+    wednesday: { open: "10:00", close: "18:00", closed: false },
+    thursday:  { open: "10:00", close: "18:00", closed: false },
+    friday:    { open: "10:00", close: "18:00", closed: false },
+    saturday:  { open: "10:00", close: "18:00", closed: false },
     sunday:    { open: "00:00", close: "00:00", closed: true },
   } as Record<string, BusinessHours>,
   displayHours: [
-    { days: "Monday – Saturday", time: "8:00 AM – 6:00 PM" },
+    { days: "Monday \u2013 Saturday", time: "10:00 AM \u2013 6:00 PM" },
     { days: "Sunday", time: "Closed" },
   ],
   timeZone: "America/Toronto",

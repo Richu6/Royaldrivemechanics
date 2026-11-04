@@ -353,7 +353,7 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
           className="w-full bg-brand-charcoal border border-brand-border rounded-card px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-brand-red text-sm"
         />
         <p className="text-xs text-brand-grey mt-1">
-          Open Mon–Sat 8:00 AM – 6:00 PM (Closed Sundays & statutory holidays). Book up to 60 days ahead.
+          Open Mon-Sat 10:00 AM - 6:00 PM (Closed Sundays & statutory holidays). Book up to 60 days ahead.
         </p>
       </div>
 

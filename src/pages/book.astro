@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BookingWidget from '../components/islands/BookingWidget';
 import { seoData } from '../data/seo';
@@ -21,7 +21,7 @@ const initialService = Astro.url.searchParams.get('service') || '';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Top Introduction -->
-      <div class="text-center max-w-2xl mx-auto mb-10">
+      <div class="text-center max-w-2xl mx-auto mb-10 reveal">
         <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-surface border border-brand-red/40 rounded-full text-xs text-white mb-3">
           <span class="text-brand-red font-bold">Real-Time Bay Availability</span> · Mississauga
         </div>
@@ -35,12 +35,10 @@ const initialService = Astro.url.searchParams.get('service') || '';
       </div>
 
       <!-- Main Booking Widget Preact Island -->
-      <BookingWidget
+      <div class="reveal"><BookingWidget
         client:load
         initialService={initialService}
-      />
-
-      <!-- Assistance Callout -->
+      />`r`n      </div>`r`n`r`n      <!-- Assistance Callout -->
       <div class="max-w-2xl mx-auto mt-12 p-6 rounded-card bg-brand-charcoal border border-brand-border text-center text-xs text-brand-grey">
         <p class="text-white font-medium text-sm mb-1">
           Prefer booking over the phone or have emergency breakdown questions?

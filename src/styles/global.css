@@ -44,3 +44,55 @@
 .speed-angle {
   clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
 }
+
+/* ─── Minimal Scroll-Reveal Animations ───────────────────────────────────── */
+
+/* Base state: elements start hidden/shifted */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.reveal-left {
+  transform: translateX(-20px);
+}
+
+.reveal.reveal-right {
+  transform: translateX(20px);
+}
+
+.reveal.reveal-scale {
+  transform: scale(0.96) translateY(10px);
+}
+
+/* Visible state (added by IntersectionObserver) */
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children of a reveal-group */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal-group.is-visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+.reveal-group.is-visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 80ms; }
+.reveal-group.is-visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 160ms; }
+.reveal-group.is-visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 240ms; }
+.reveal-group.is-visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 320ms; }
+.reveal-group.is-visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 400ms; }
+.reveal-group.is-visible > *:nth-child(n+7) { opacity: 1; transform: none; transition-delay: 480ms; }
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-group > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

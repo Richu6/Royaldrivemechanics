@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ImageLightbox from '../../components/islands/ImageLightbox';
 import { servicesData } from '../../data/services';
@@ -86,7 +86,7 @@ const seo = seoData.services;
         >
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div class="reveal-group grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
               
               <!-- Left/Top: Hero Image or Branded Placeholder -->
               <div class="lg:col-span-5">
@@ -163,7 +163,7 @@ const seo = seoData.services;
                     <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">
                       How A Collision Repair Works:
                     </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="reveal-group grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {service.collisionSteps.map((step) => (
                         <div class="border-l-2 border-brand-red pl-3">
                           <span class="text-xs font-bold text-brand-red">Step 0{step.step}</span>
@@ -180,7 +180,7 @@ const seo = seoData.services;
                   <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">
                     What's Included in This Service:
                   </h4>
-                  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-brand-grey">
+                  <ul class="reveal-group grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-brand-grey">
                     {service.whatsIncluded.map((item) => (
                       <li class="flex items-start gap-2 bg-brand-surface/40 p-2.5 rounded border border-brand-border/40">
                         <span class="text-brand-red font-bold">✓</span>

@@ -1,11 +1,13 @@
-﻿---
+---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Map from '../components/Map.astro';
 import { businessConfig } from '../config/business';
 import { seoData } from '../data/seo';
 
+export const prerender = true;
+
 const seo = seoData.contact;
-const isSent = Astro.url.searchParams.get('sent') === 'true';
+const isSent = false;
 ---
 
 <BaseLayout

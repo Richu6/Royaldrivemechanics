@@ -1,11 +1,13 @@
-﻿---
+---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BookingWidget from '../components/islands/BookingWidget';
 import { seoData } from '../data/seo';
 import { businessConfig } from '../config/business';
 
+export const prerender = true;
+
 const seo = seoData.book;
-const initialService = Astro.url.searchParams.get('service') || '';
+const initialService = '';
 ---
 
 <BaseLayout

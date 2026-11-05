@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "include": [
+    "/_server-islands/*",
+    "/_image",
+    "/api/*",
+    "/book",
+    "/booking/*",
+    "/contact"
+  ],
+  "exclude": [
+    "/",
+    "/_astro/*",
+    "/apple-touch-icon.png",
+    "/favicon-32x32.png",
+    "/favicon.ico",
+    "/icon-192.png",
+    "/icon-512.png",
+    "/og-image.jpg",
+    "/robots.txt",
+    "/site.webmanifest",
+    "/brand/rdm-banner.jpg",
+    "/brand/rdm-business-card.jpg",
+    "/brand/rdm-flyer.jpg",
+    "/brand/rdm-logo-cropped.jpg",
+    "/brand/rdm-logo-full.jpg",
+    "/brand/rdm-logo-transparent.png",
+    "/brand/rdm-logo-white.jpg",
+    "/404",
+    "/privacy",
+    "/services/*",
+    "/terms"
+  ]
+}

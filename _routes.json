@@ -4,14 +4,14 @@
     "/_server-islands/*",
     "/_image",
     "/api/*",
-    "/book",
-    "/booking/*",
-    "/contact"
+    "/booking/*"
   ],
   "exclude": [
     "/",
     "/_astro/*",
+    "/.nojekyll",
     "/apple-touch-icon.png",
+    "/CNAME",
     "/favicon-32x32.png",
     "/favicon.ico",
     "/icon-192.png",
@@ -27,6 +27,8 @@
     "/brand/rdm-logo-transparent.png",
     "/brand/rdm-logo-white.jpg",
     "/404",
+    "/book",
+    "/contact",
     "/privacy",
     "/services/*",
     "/terms"

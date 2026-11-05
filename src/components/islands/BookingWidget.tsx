@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import type { TimeSlot } from '../../lib/slots';
+import { getSlotsForDate, generateReference, formatTime12 } from '../../lib/slots';
 import { generateIcsDataUrl } from '../../lib/ics';
 
 interface Props {

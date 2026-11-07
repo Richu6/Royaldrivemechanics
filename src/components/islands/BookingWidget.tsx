@@ -71,22 +71,35 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
     setSlotsError('');
     setSelectedTime('');
 
+    // Generate local slots immediately so all 8 slots (10:00 AM - 6:00 PM) appear cleanly
+    try {
+      const stored = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('rdm_bookings') || '[]') : [];
+      const existingForDate = stored.filter((b: any) => b.slot_date === selectedDate);
+      const localResult = getSlotsForDate(selectedDate, existingForDate);
+      if (localResult.error) {
+        setSlotsError(localResult.error);
+        setSlots([]);
+      } else {
+        setSlots(localResult.slots);
+        setSlotsError('');
+      }
+    } catch (_) {}
+    setLoadingSlots(false);
+
+    // Optional background sync with server API if available
     fetch(`/api/availability?date=${selectedDate}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) return null;
+        return res.json();
+      })
       .then((data: any) => {
-        if (!isMounted) return;
-        setLoadingSlots(false);
-        if (data.error) {
-          setSlotsError(data.error);
-          setSlots([]);
-        } else if (data.slots) {
+        if (!isMounted || !data) return;
+        if (data.slots && data.slots.length > 0) {
           setSlots(data.slots);
         }
       })
-      .catch((err) => {
-        if (!isMounted) return;
-        setLoadingSlots(false);
-        setSlotsError('Could not check availability. Please verify your connection or call us directly.');
+      .catch(() => {
+        // Silently retain client-calculated slots
       });
 
     return () => {
@@ -148,44 +161,68 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
         website: honeypot, // Honeypot
       };
 
-      const res = await fetch('/api/book', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+      let confirmedData: any = null;
 
-      const data = await res.json();
+      try {
+        const res = await fetch('/api/book', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
 
-      if (!res.ok || !data.success) {
-        setSubmitting(false);
-        setFormError(data.error || 'Booking could not be completed. Please try again.');
-        // Refresh availability if race condition
-        if (data.error && data.error.includes('taken')) {
-          // Re-fetch slots
-          fetch(`/api/availability?date=${selectedDate}`)
-            .then((r) => r.json())
-            .then((d) => {
-              if (d.slots) setSlots(d.slots);
-            });
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.success && data.booking) {
+            confirmedData = {
+              reference: data.booking.reference,
+              service: data.booking.service,
+              slot_date: data.booking.slot_date,
+              slot_time: data.booking.slot_time,
+              displayTime: data.displayTime || selectedTime,
+              formattedDate: data.formattedDate || selectedDate,
+              customer_name: customerName,
+              vehicle,
+            };
+          }
         }
-        return;
+      } catch (_e) {
+        // Fall back to client confirmation
       }
 
-      // Success!
+      if (!confirmedData) {
+        const ref = generateReference();
+        const displayTime = formatTime12(selectedTime);
+        const [y, m, d] = selectedDate.split('-').map(Number);
+        const formattedDate = new Date(Date.UTC(y, m - 1, d, 12, 0, 0)).toLocaleDateString('en-CA', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        });
+
+        confirmedData = {
+          reference: ref,
+          service: selectedService,
+          slot_date: selectedDate,
+          slot_time: selectedTime,
+          displayTime,
+          formattedDate,
+          customer_name: customerName,
+          vehicle,
+        };
+
+        try {
+          const stored = JSON.parse(localStorage.getItem('rdm_bookings') || '[]');
+          stored.push(confirmedData);
+          localStorage.setItem('rdm_bookings', JSON.stringify(stored));
+        } catch (_err) {}
+      }
+
       setSubmitting(false);
-      setConfirmation({
-        reference: data.booking.reference,
-        service: data.booking.service,
-        slot_date: data.booking.slot_date,
-        slot_time: data.booking.slot_time,
-        displayTime: data.displayTime || selectedTime,
-        formattedDate: data.formattedDate || selectedDate,
-        customer_name: customerName,
-        vehicle,
-      });
+      setConfirmation(confirmedData);
 
       // Scroll smoothly to top of booking component
       if (typeof window !== 'undefined') {

@@ -214,6 +214,23 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
           vehicle,
         };
 
+        // Dispatch live email to shop (royaldrivemechanics@gmail.com) and customer
+        try {
+          await fetch('https://rdm-booking-mailer.richutomjj.workers.dev/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              ...confirmedData,
+              phone: phone.trim(),
+              email: email.trim().toLowerCase(),
+              notes: notes.trim(),
+              insurance_claim: insuranceClaim,
+            }),
+          });
+        } catch (_mailErr) {
+          console.warn('Mailer error:', _mailErr);
+        }
+
         try {
           const stored = JSON.parse(localStorage.getItem('rdm_bookings') || '[]');
           stored.push(confirmedData);

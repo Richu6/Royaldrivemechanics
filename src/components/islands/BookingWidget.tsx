@@ -50,7 +50,7 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
         const serviceMap: [RegExp, string][] = [
           [/oil/i, 'Oil Changes & Maintenance'],
           [/brake/i, 'Brake Repair & Service'],
-          [/safety|inspection/i, 'Vehicle Safety Inspections'],
+          [/safety|inspection|cert/i, 'Vehicle Safety Inspections and Certification'],
           [/trans|engine & trans/i, 'Engine & Transmission Services'],
           [/suspension|steering/i, 'Suspension & Steering'],
           [/tune/i, 'Engine Tune-Ups'],
@@ -393,9 +393,9 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
           className="w-full bg-brand-charcoal border border-brand-border rounded-card px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-brand-red text-sm"
         >
           <option value="">-- Choose a service --</option>
-          <option value="Oil Changes & Maintenance">Oil Changes & Maintenance (15% OFF Promo)</option>
-          <option value="Brake Repair & Service">Brake Repair & Service (15% OFF Promo)</option>
-          <option value="Vehicle Safety Inspections">Vehicle Safety Inspections (MTO Licensed)</option>
+          <option value="Oil Changes & Maintenance">Oil Changes & Maintenance</option>
+          <option value="Brake Repair & Service">Brake Repair & Service</option>
+          <option value="Vehicle Safety Inspections and Certification">Vehicle Safety Inspections and Certification</option>
           <option value="Engine & Transmission Services">Engine & Transmission Services</option>
           <option value="Suspension & Steering">Suspension & Steering</option>
           <option value="Engine Tune-Ups">Engine Tune-Ups</option>

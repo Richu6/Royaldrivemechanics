@@ -77,7 +77,7 @@ export const servicesData: ServiceDetail[] = [
     longContent: [
       "Stopping safely under emergency conditions requires 100% brake hydraulic integrity and optimal friction between your pads and rotors. In Mississauga, winter road brine, salt spray, and stop-and-go highway congestion cause brake caliper sliders to seize, pad backing plates to rust, and brake rotors to develop heavy corrosion grooves.",
       "At RDM, we never perform slap-pad replacements. Every brake service includes measuring rotor thickness with precision micrometers, cleaning and lubricating caliper slide pins with high-temperature silicone grease, replacing anti-rattle hardware clips, and bleeding out old moisture-laden brake fluid.",
-      "Take advantage of our current 15% off promotion on brake services to ensure your family's safety on the road."
+      "Schedule regular brake maintenance with our certified technicians to ensure your family's safety on the road."
     ],
     whatsIncluded: [
       "Full digital measurement of brake pad friction material thickness",
@@ -115,8 +115,8 @@ export const servicesData: ServiceDetail[] = [
   {
     id: "safety-inspections",
     slug: "safety-inspections",
-    name: "Vehicle Safety Inspections",
-    shortName: "Safety Inspections",
+    name: "Vehicle Safety Inspections and Certification",
+    shortName: "Safety Certification",
     leadTagline: "Licensed Ontario MTO Motor Vehicle Inspection Station.",
     shortDescription: "Official Ontario Safety Standards Certificate (SSC) inspections in Mississauga. Fast, unbiased vehicle certification for sales, transfers, and registrations.",
     fullDescription: "As a certified Ontario Ministry of Transportation (MTO) Motor Vehicle Inspection Station, Royal Drive Mechanics provides thorough, impartial vehicle safety inspections. We verify brakes, steering, suspension, chassis integrity, tires, and lighting according to provincial standards, issuing your official DriveON digital safety certificate promptly.",

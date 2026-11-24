@@ -99,13 +99,13 @@ export const businessConfig = {
     "2027-01-01", // New Year's Day 2027
   ],
   promotion: {
-    enabled: true,
-    badge: "Limited Time Offer",
-    title: "15% OFF on Brakes & Oil Changes",
-    description: "Keep your vehicle running safely and smoothly with 15% off brake services and oil changes. Terms and conditions apply.",
-    termsNote: "Contact us for details",
-    termsLink: "/terms#offer-terms",
-    endDate: "2026-12-31",
+    enabled: false,
+    badge: "",
+    title: "",
+    description: "",
+    termsNote: "",
+    termsLink: "/terms",
+    endDate: "",
   } as PromotionConfig,
   // Suggested service areas - TO CONFIRM WITH OWNER
   serviceAreas: [

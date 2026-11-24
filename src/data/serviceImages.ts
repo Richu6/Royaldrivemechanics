@@ -20,7 +20,7 @@ export const serviceImageOverrides: Record<string, Record<string, { alt?: string
   },
   "safety-inspections": {
     "cover.jpg": {
-      alt: "Vehicle Safety Inspections at Royal Drive Mechanics, Mississauga",
+      alt: "Vehicle Safety Inspections and Certification at Royal Drive Mechanics, Mississauga",
       caption: "Licensed MTO Safety Inspection and digital certification"
     }
   },

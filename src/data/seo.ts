@@ -30,14 +30,14 @@ export const seoData: Record<string, PageSEO> = {
   },
   brakes: {
     title: "Brake Repair & Pad Replacement Mississauga | RDM",
-    description: "Precision brake repairs, ceramic pads & rotor service in Mississauga. 15% off promo! Book or call 365-524-2003.",
+    description: "Precision brake repairs, ceramic pads & rotor service in Mississauga. Professional diagnostics & warranty. Book or call 365-524-2003.",
     primaryKeyword: "brake repair Mississauga",
     secondaryKeywords: ["brake service Mississauga", "brake pad replacement Mississauga", "brake rotor replacement Mississauga"],
     canonicalPath: "/services/brakes",
   },
   "safety-inspections": {
-    title: "MTO Vehicle Safety Inspection Mississauga | RDM",
-    description: "Licensed Ontario MTO safety inspection station in Mississauga. Fast Safety Standards Certificate (SSC). Call 365-524-2003.",
+    title: "Vehicle Safety Inspections & Certification Mississauga | RDM",
+    description: "Licensed Ontario safety inspection station in Mississauga. Fast Safety Standards Certificate (SSC). Call 365-524-2003.",
     primaryKeyword: "safety inspection Mississauga Ontario",
     secondaryKeywords: ["certified vehicle inspection Mississauga", "Ontario safety certificate Mississauga", "used car safety inspection Mississauga"],
     canonicalPath: "/services/safety-inspections",

@@ -23,7 +23,6 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
   const [email, setEmail] = useState<string>('');
   const [vehicle, setVehicle] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
-  const [insuranceClaim, setInsuranceClaim] = useState<boolean>(false);
   const [privacyConsent, setPrivacyConsent] = useState<boolean>(false);
   const [honeypot, setHoneypot] = useState<string>('');
 
@@ -171,7 +170,6 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
         email: email.trim().toLowerCase(),
         vehicle: vehicle.trim(),
         notes: notes.trim(),
-        insurance_claim: insuranceClaim,
         privacy_consent: true,
         website: honeypot, // Honeypot
       };
@@ -239,7 +237,6 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
               phone: phone.trim(),
               email: email.trim().toLowerCase(),
               notes: notes.trim(),
-              insurance_claim: insuranceClaim,
             }),
           });
         } catch (_mailErr) {
@@ -567,21 +564,6 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
             className="w-full bg-brand-charcoal border border-brand-border rounded-card px-3.5 py-2.5 text-white focus:outline-none focus:ring-2 focus:ring-brand-red text-sm resize-none"
           ></textarea>
         </div>
-
-        {/* Insurance Claim Checkbox */}
-        <label className="flex items-start gap-3 p-3.5 rounded-card bg-brand-charcoal/60 border border-brand-border cursor-pointer hover:border-brand-grey/60 transition mb-4">
-          <input
-            type="checkbox"
-            name="insurance_claim"
-            checked={insuranceClaim}
-            onChange={(e: any) => setInsuranceClaim(e.target.checked)}
-            className="mt-0.5 w-4 h-4 rounded text-brand-red focus:ring-brand-red bg-brand-surface border-brand-border"
-          />
-          <div className="text-xs">
-            <span className="font-semibold text-white block">I'm booking for a collision / insurance claim</span>
-            <span className="text-brand-grey">We work directly with all major insurance companies for estimates and direct billing.</span>
-          </div>
-        </label>
 
         {/* Privacy Consent Checkbox */}
         <label className="flex items-start gap-3 p-3.5 rounded-card bg-brand-charcoal/60 border border-brand-border cursor-pointer hover:border-brand-grey/60 transition">

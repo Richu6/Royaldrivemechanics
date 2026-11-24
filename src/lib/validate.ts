@@ -11,7 +11,7 @@ export const bookingSchema = z.object({
   email: z.string().trim().email('Please enter a valid email address').toLowerCase(),
   vehicle: z.string().trim().min(3, 'Please provide vehicle year, make, and model (e.g. 2018 Honda Civic)'),
   notes: z.string().trim().max(1000, 'Notes must be under 1000 characters').optional().default(''),
-  insurance_claim: z.union([z.boolean(), z.string()]).transform(val => val === true || val === 'true' || val === 'on' || val === '1'),
+  insurance_claim: z.union([z.boolean(), z.string()]).optional().default(false).transform(val => val === true || val === 'true' || val === 'on' || val === '1'),
   privacy_consent: z.union([z.boolean(), z.string()]).refine(val => val === true || val === 'true' || val === 'on' || val === '1', {
     message: 'You must consent to the privacy policy to submit a booking'
   }),

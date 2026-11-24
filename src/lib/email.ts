@@ -11,7 +11,7 @@ export interface BookingEmailPayload {
   email: string;
   vehicle: string;
   notes?: string;
-  insurance_claim: boolean;
+  insurance_claim?: boolean;
 }
 
 /**
@@ -93,12 +93,6 @@ export async function sendBookingEmails(
           <tr>
             <td style="padding: 8px 0; font-weight: bold;">Vehicle:</td>
             <td style="padding: 8px 0; font-weight: bold;">${booking.vehicle}</td>
-          </tr>
-          <tr>
-            <td style="padding: 8px 0; font-weight: bold;">Insurance Claim:</td>
-            <td style="padding: 8px 0;">
-              ${booking.insurance_claim ? '<span style="background-color: #fee2e2; color: #991b1b; padding: 4px 8px; border-radius: 4px; font-weight: bold;">YES - Collision / Insurance Claim</span>' : 'Standard Booking'}
-            </td>
           </tr>
           <tr>
             <td style="padding: 8px 0; font-weight: bold; vertical-align: top;">Problem Notes:</td>

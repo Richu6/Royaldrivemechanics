@@ -24,19 +24,19 @@ export const servicesData: ServiceDetail[] = [
   {
     id: "oil-changes",
     slug: "oil-changes",
-    name: "All Oil Changes",
-    shortName: "Oil Changes",
-    leadTagline: "Keep your engine clean and running smoothly.",
-    shortDescription: "Regular oil and filter changes are vital to prolonging engine life, cooling critical components, and preventing premature friction wear in Mississauga driving conditions.",
-    fullDescription: "At Royal Drive Mechanics, we provide fast, comprehensive oil change services tailored to your vehicle manufacturer's exact specifications. Whether your vehicle requires full synthetic, synthetic blend, high-mileage, or conventional motor oil, our technicians replace your oil and premium filter while performing a multi-point courtesy inspection on fluids, belts, and tire pressures.",
+    name: "Oil Changes & Maintenance",
+    shortName: "Oil & Maintenance",
+    leadTagline: "Protect your engine & maintain factory warranty.",
+    shortDescription: "Expert synthetic, blend, and high-mileage oil changes in Mississauga. Complete with OEM-grade filter replacement, fluid top-ups, and a multi-point inspection.",
+    fullDescription: "Royal Drive Mechanics provides fast, warranty-approved oil changes and preventive maintenance tailored to your vehicle manufacturer's specifications. Whether your car needs 0W-20 full synthetic, euro-spec blend, or heavy-duty motor oil, our technicians replace your oil and premium filter while performing a courtesy check on fluids, belts, and tire pressures.",
     longContent: [
-      "Engine oil is the lifeblood of your vehicle. Over time, heat, stop-and-go traffic across the Greater Toronto Area, and cold Canadian winter mornings cause oil to break down and collect harmful deposits, carbon soot, and metal particles. Running on degraded oil increases internal engine friction, reduces fuel economy, and risks catastrophic component failure.",
+      "Engine oil is the lifeblood of your vehicle. Over time, heat, stop-and-go traffic across the Greater Toronto Area, and cold Canadian winter mornings cause oil to break down and collect harmful deposits, carbon soot, and metal particles. Running on degraded oil increases internal engine friction, reduces fuel economy, and risks premature engine failure.",
       "At our Mississauga workshop on Royal Windsor Drive, we utilize only premium OEM-grade lubricants and high-filtration oil filters. Every oil service includes draining the old oil completely, inspecting the drain plug gasket, torquing fasteners to factory specs, and replenishing with the exact viscosity recommended by your automaker.",
       "In addition to the oil service, our technicians carry out a complimentary visual check on your air filter, cabin filter, brake fluid moisture, coolant strength, serpentine belt condition, and wiper blades to ensure complete road confidence."
     ],
     whatsIncluded: [
-      "Complete engine oil drain and refill with OEM-spec synthetic, synthetic blend, or conventional oil",
-      "New premium oil filter replacement",
+      "Complete engine oil drain and refill with OEM-spec synthetic, blend, or conventional oil",
+      "New premium high-filtration oil filter replacement",
       "Multi-point underhood fluid check (brake, transmission, coolant, power steering, washer fluids)",
       "Visual inspection of belts, hoses, steering linkages, and suspension components",
       "Tire pressure check and adjustment to factory PSI",
@@ -64,151 +64,16 @@ export const servicesData: ServiceDetail[] = [
       }
     ],
     icon: "oil-can",
-    relatedServiceSlugs: ["tune-ups", "brakes", "engine-transmissions"]
-  },
-  {
-    id: "tune-ups",
-    slug: "tune-ups",
-    name: "Tune-Ups",
-    shortName: "Tune-Ups",
-    leadTagline: "Better performance. Better fuel economy.",
-    shortDescription: "Restore responsive acceleration, smooth engine idling, and peak fuel efficiency with comprehensive tune-up and ignition maintenance.",
-    fullDescription: "A comprehensive engine tune-up at Royal Drive Mechanics cleans out performance sluggishness caused by fouled spark plugs, clogged air filters, and worn ignition coils. We inspect, diagnose, and replace vital ignition and intake components to bring your engine back to peak factory responsiveness.",
-    longContent: [
-      "Today's computer-controlled engines demand precise spark timing and calibrated fuel delivery. Over tens of thousands of kilometers, spark plug electrodes erode, ignition coils lose resistance, throttle bodies accumulate carbon varnish, and engine filters become restricted. The result is sluggish throttle response, reduced kilometers-per-litre, and occasional misfires.",
-      "At RDM Mississauga, our tune-up service goes far beyond simply replacing spark plugs. We utilize advanced diagnostic scanning tools to evaluate live engine sensor parameters, fuel trims, oxygen sensor reactions, and ignition firing voltages.",
-      "Whether you commute daily down the QEW or drive commercial routes in Mississauga, our tune-up packages keep your engine operating at its cleanest and most efficient."
-    ],
-    whatsIncluded: [
-      "Computer diagnostic scan for pending and active trouble codes",
-      "Iridium or platinum spark plug inspection and replacement to factory gap specs",
-      "Ignition coil pack and ignition wire resistance testing",
-      "Engine air filter and cabin air filter inspection and replacement",
-      "Throttle body cleaning and carbon deposit removal",
-      "Fuel injector cleaner treatment and idle speed calibration"
-    ],
-    signsYouNeedThis: [
-      "Rough, vibrating, or stumbling idle when stopped at traffic lights",
-      "Noticeable drop in fuel economy (fewer kilometers per tank)",
-      "Sluggish acceleration or hesitation when pressing the gas pedal",
-      "Intermittent engine misfire or flashing Check Engine Light",
-      "Difficulty starting or prolonged cranking in cold weather"
-    ],
-    faqs: [
-      {
-        question: "When does my car need an engine tune-up?",
-        answer: "Most modern cars with platinum or iridium plugs require tune-ups between 80,000 and 120,000 km. However, if you notice rough idling, decreased gas mileage, or hard starting, you should have it inspected sooner."
-      },
-      {
-        question: "Will a tune-up turn off my Check Engine light?",
-        answer: "If the Check Engine light is triggered by ignition misfires, worn spark plugs, or intake airflow issues, fixing those faults and clearing the ECU codes will resolve the warning."
-      },
-      {
-        question: "How does a tune-up improve fuel economy?",
-        answer: "Fresh spark plugs and a clean intake ensure complete combustion of the air-fuel mixture, preventing wasted unburnt fuel from exiting through the exhaust."
-      }
-    ],
-    icon: "spark-plug",
-    relatedServiceSlugs: ["oil-changes", "engine-transmissions", "safety-inspections"]
-  },
-  {
-    id: "suspension",
-    slug: "suspension",
-    name: "Suspension",
-    shortName: "Suspension",
-    leadTagline: "A smoother ride starts with a solid suspension.",
-    shortDescription: "Eliminate road clunks, improve highway stability, and maintain even tire wear with precision suspension and steering repairs.",
-    fullDescription: "Potholes, winter frost heaves, and salt-treated roads take a heavy toll on struts, shocks, control arms, and ball joints. Royal Drive Mechanics provides expert steering and suspension diagnostics, component replacement, and ride comfort restoration.",
-    longContent: [
-      "Your vehicle's suspension system is responsible for more than just a smooth ride: it is critical for braking distance, steering control, and tire contact with the pavement. When struts, shocks, bushings, or tie rod ends wear out, your vehicle bounces uncontrollably, dives during emergency braking, and wanders unpredictably in highway ruts.",
-      "At our Mississauga workshop on Royal Windsor Drive, we perform thorough mechanical inspections on all four corners of your vehicle. We test shock rebound, examine hydraulic seal leakage, check ball joint play, and inspect rubber control arm bushings for tearing and salt degradation.",
-      "We install high-grade OEM and heavy-duty aftermarket suspension components to ensure your car handles securely in all seasons."
-    ],
-    whatsIncluded: [
-      "Comprehensive steering and suspension safety inspection on vehicle lift",
-      "Strut and shock absorber health and leak testing",
-      "Ball joint, control arm, and bushing wear diagnostics",
-      "Inner and outer tie rod end play inspection",
-      "Sway bar link and stabilizer bar bushing evaluation",
-      "Wheel bearing hub noise and play assessment"
-    ],
-    signsYouNeedThis: [
-      "Clunking, popping, or rattling sounds when driving over bumps and uneven pavement",
-      "Excessive bouncing, nose-diving during braking, or body roll in corners",
-      "Vehicle pulls to one side on flat, straight roads",
-      "Uneven or cupped tire tread wear across the inner or outer edges",
-      "Loose or wandering steering wheel feeling at highway speeds"
-    ],
-    faqs: [
-      {
-        question: "How long do shocks and struts typically last?",
-        answer: "In Ontario road conditions with winter potholes and road salt, shocks and struts generally last between 80,000 and 120,000 km before internal damping valves and rubber seals degrade."
-      },
-      {
-        question: "Is it safe to drive with a worn suspension?",
-        answer: "Driving on worn suspension components increases your emergency stopping distance by up to 20%, causes severe premature tire wear, and risks sudden separation of critical parts like ball joints or tie rods."
-      },
-      {
-        question: "Do I need a wheel alignment after suspension repairs?",
-        answer: "Yes, whenever steering or suspension components like struts, tie rods, or control arms are replaced, a wheel alignment is necessary to prevent tire scrubbing and pull."
-      }
-    ],
-    icon: "suspension-spring",
-    relatedServiceSlugs: ["brakes", "safety-inspections", "tune-ups"]
-  },
-  {
-    id: "engine-transmissions",
-    slug: "engine-transmissions",
-    name: "Engine & Transmissions",
-    shortName: "Engine & Transmissions",
-    leadTagline: "Expert care for the heart of your vehicle.",
-    shortDescription: "Specialized mechanical diagnostics, timing chain and belt services, transmission fluid flushes, and heavy driveline repairs.",
-    fullDescription: "From check engine light troubleshooting and cooling system repairs to transmission diagnostics and mechanical rebuilds, Royal Drive Mechanics has the diagnostic gear and mechanical expertise to handle major automotive systems with total precision.",
-    longContent: [
-      "The engine and transmission represent the most complex and expensive mechanical systems in any motor vehicle. Minor symptoms like an unexpected gear slip, delayed engagement, subtle coolant leak, or intermittent timing rattle can quickly escalate into costly internal damage if ignored.",
-      "At Royal Drive Mechanics, we prioritize honest, accurate diagnosis. We don't guess or throw parts at problems. Our technicians utilize professional scan tools, digital pressure gauges, borescope cameras, and smoke leak detectors to pinpoint the exact root cause of engine or transmission distress.",
-      "Whether you require a transmission fluid exchange, a replacement radiator, a timing belt and water pump kit, cylinder head repair, or an entire driveline replacement, we provide clear written estimates before any work begins."
-    ],
-    whatsIncluded: [
-      "Deep computer diagnostics including live powertrain data logging",
-      "Automatic and manual transmission fluid checks and exchanges",
-      "Cooling system pressure testing (radiator, water pump, thermostat, hoses)",
-      "Timing belt and timing chain tensioner inspections and replacements",
-      "Gasket leak detection (valve cover, oil pan, head gasket analysis)",
-      "Engine mount and transmission mount integrity checks"
-    ],
-    signsYouNeedThis: [
-      "Transmission slips, revs without accelerating, or jerks violently between gears",
-      "Check engine light glowing or flashing on dashboard",
-      "Puddles of red transmission fluid, pink coolant, or dark engine oil beneath your car",
-      "Engine temperature gauge climbing into the hot red zone or steam from hood",
-      "Rattling or metallic grinding noises coming from the engine bay"
-    ],
-    faqs: [
-      {
-        question: "Should transmission fluid ever be changed if it's labeled 'lifetime'?",
-        answer: "Automaker 'lifetime' fluid claims often refer to the standard warranty period. For long-term vehicle longevity, transmission fluid breaks down under heat and should typically be serviced every 60,000 to 100,000 km."
-      },
-      {
-        question: "Can I drive if my Check Engine light is flashing?",
-        answer: "No. A flashing Check Engine light indicates an active severe misfire that can rapidly melt your catalytic converter and cause catastrophic engine damage. Pull over safely and arrange towing to our workshop."
-      },
-      {
-        question: "Do you provide written estimates before starting engine or transmission work?",
-        answer: "Yes, we always provide a detailed written estimate outlining the required parts and labor, and we never proceed with additional work without your explicit approval."
-      }
-    ],
-    icon: "engine-gear",
-    relatedServiceSlugs: ["oil-changes", "tune-ups", "safety-inspections"]
+    relatedServiceSlugs: ["brakes", "tune-ups", "engine-transmissions"]
   },
   {
     id: "brakes",
     slug: "brakes",
-    name: "Brakes",
-    shortName: "Brakes",
-    leadTagline: "Reliable stopping power, every time.",
-    shortDescription: "High-grade brake pads, precision rotor resurfacing or replacement, caliper servicing, and brake fluid flushes for dependable stopping in any weather.",
-    fullDescription: "Your vehicle's braking system is your primary line of defense on Ontario roads. At Royal Drive Mechanics, we inspect pads, rotors, drums, calipers, hardware, and hydraulic lines, using premium ceramic or semi-metallic friction materials designed for quiet operation and long lifespan.",
+    name: "Brake Repair & Service",
+    shortName: "Brake Service",
+    leadTagline: "Precision stopping power & ceramic pad installation.",
+    shortDescription: "Dependable brake repair in Mississauga. Premium ceramic pad replacement, rotor resurfacing, caliper inspection, and hydraulic fluid flushes for safe stopping.",
+    fullDescription: "Your brakes are your vehicle's most important safety system. At Royal Drive Mechanics, we diagnose squealing, vibration, and spongy pedals using micrometer measurements and OEM-grade ceramic or semi-metallic parts. Every brake service includes rotor inspection, slider lubrication, hardware replacement, and full system bleeding.",
     longContent: [
       "Stopping safely under emergency conditions requires 100% brake hydraulic integrity and optimal friction between your pads and rotors. In Mississauga, winter road brine, salt spray, and stop-and-go highway congestion cause brake caliper sliders to seize, pad backing plates to rust, and brake rotors to develop heavy corrosion grooves.",
       "At RDM, we never perform slap-pad replacements. Every brake service includes measuring rotor thickness with precision micrometers, cleaning and lubricating caliper slide pins with high-temperature silicone grease, replacing anti-rattle hardware clips, and bleeding out old moisture-laden brake fluid.",
@@ -245,16 +110,16 @@ export const servicesData: ServiceDetail[] = [
       }
     ],
     icon: "brake-disc",
-    relatedServiceSlugs: ["suspension", "oil-changes", "safety-inspections"]
+    relatedServiceSlugs: ["suspension", "safety-inspections", "oil-changes"]
   },
   {
     id: "safety-inspections",
     slug: "safety-inspections",
-    name: "Safety Inspections & Certification",
+    name: "Vehicle Safety Inspections",
     shortName: "Safety Inspections",
-    leadTagline: "Your safety is our priority.",
-    shortDescription: "Official Ontario Ministry of Transportation (MTO) Licensed Motor Vehicle Inspection Station. Certified Vehicle Inspection Centre.",
-    fullDescription: "Need an Ontario Safety Standards Certificate (SSC) to register a newly purchased used vehicle, transfer ownership, or certify an out-of-province automobile? Royal Drive Mechanics is a licensed MTO Motor Vehicle Inspection Station adhering strictly to Ontario passenger vehicle safety guidelines.",
+    leadTagline: "Licensed Ontario MTO Motor Vehicle Inspection Station.",
+    shortDescription: "Official Ontario Safety Standards Certificate (SSC) inspections in Mississauga. Fast, unbiased vehicle certification for sales, transfers, and registrations.",
+    fullDescription: "As a certified Ontario Ministry of Transportation (MTO) Motor Vehicle Inspection Station, Royal Drive Mechanics provides thorough, impartial vehicle safety inspections. We verify brakes, steering, suspension, chassis integrity, tires, and lighting according to provincial standards, issuing your official DriveON digital safety certificate promptly.",
     longContent: [
       "In Ontario, transferring a used vehicle or registering an automobile brought from another province requires an official Safety Standards Certificate issued by an authorized inspection station. At Royal Drive Mechanics, we operate as a fully accredited Licensed Motor Vehicle Inspection Station under the Ontario Ministry of Transportation.",
       "Our licensed technicians carry out systematic, impartial inspections across all regulated vehicle safety systems: braking performance, steering linkages, suspension joints, structural chassis integrity, exhaust emissions, lighting and electrical indicators, windshield wipers, tires, and seatbelt assemblies.",
@@ -295,13 +160,148 @@ export const servicesData: ServiceDetail[] = [
     relatedServiceSlugs: ["brakes", "suspension", "engine-transmissions"]
   },
   {
+    id: "engine-transmissions",
+    slug: "engine-transmissions",
+    name: "Engine & Transmission Services",
+    shortName: "Engine & Transmission",
+    leadTagline: "Advanced diagnostic scanning & major mechanical repairs.",
+    shortDescription: "Comprehensive check engine diagnostics, timing chain services, transmission fluid flushes, and driveline repairs with honest written estimates in Mississauga.",
+    fullDescription: "From check engine light troubleshooting and cooling system leaks to transmission slipping and mechanical overhauls, Royal Drive Mechanics handles major automotive systems with dealer-level scan tools and master mechanical care. We diagnose the root cause accurately and provide clear written estimates before any work begins.",
+    longContent: [
+      "The engine and transmission represent the most complex and expensive mechanical systems in any motor vehicle. Minor symptoms like an unexpected gear slip, delayed engagement, subtle coolant leak, or intermittent timing rattle can quickly escalate into costly internal damage if ignored.",
+      "At Royal Drive Mechanics, we prioritize honest, accurate diagnosis. We don't guess or throw parts at problems. Our technicians utilize professional scan tools, digital pressure gauges, borescope cameras, and smoke leak detectors to pinpoint the exact root cause of engine or transmission distress.",
+      "Whether you require a transmission fluid exchange, a replacement radiator, a timing belt and water pump kit, cylinder head repair, or an entire driveline replacement, we provide clear written estimates before any work begins."
+    ],
+    whatsIncluded: [
+      "Deep computer diagnostics including live powertrain data logging",
+      "Automatic and manual transmission fluid checks and exchanges",
+      "Cooling system pressure testing (radiator, water pump, thermostat, hoses)",
+      "Timing belt and timing chain tensioner inspections and replacements",
+      "Gasket leak detection (valve cover, oil pan, head gasket analysis)",
+      "Engine mount and transmission mount integrity checks"
+    ],
+    signsYouNeedThis: [
+      "Transmission slips, revs without accelerating, or jerks violently between gears",
+      "Check engine light glowing or flashing on dashboard",
+      "Puddles of red transmission fluid, pink coolant, or dark engine oil beneath your car",
+      "Engine temperature gauge climbing into the hot red zone or steam from hood",
+      "Rattling or metallic grinding noises coming from the engine bay"
+    ],
+    faqs: [
+      {
+        question: "Should transmission fluid ever be changed if it's labeled 'lifetime'?",
+        answer: "Automaker 'lifetime' fluid claims often refer to the standard warranty period. For long-term vehicle longevity, transmission fluid breaks down under heat and should typically be serviced every 60,000 to 100,000 km."
+      },
+      {
+        question: "Can I drive if my Check Engine light is flashing?",
+        answer: "No. A flashing Check Engine light indicates an active severe misfire that can rapidly melt your catalytic converter and cause catastrophic engine damage. Pull over safely and arrange towing to our workshop."
+      },
+      {
+        question: "Do you provide written estimates before starting engine or transmission work?",
+        answer: "Yes, we always provide a detailed written estimate outlining the required parts and labor, and we never proceed with additional work without your explicit approval."
+      }
+    ],
+    icon: "engine-gear",
+    relatedServiceSlugs: ["oil-changes", "tune-ups", "safety-inspections"]
+  },
+  {
+    id: "suspension",
+    slug: "suspension",
+    name: "Suspension & Steering",
+    shortName: "Suspension & Steering",
+    leadTagline: "Smooth ride comfort & stable highway handling.",
+    shortDescription: "Complete suspension and steering repair in Mississauga. Eliminate noises and tire wear with shock, strut, ball joint, tie rod, and control arm replacement.",
+    fullDescription: "Ontario winters and potholes take a heavy toll on suspension joints and steering components. At Royal Drive Mechanics, we inspect struts, shocks, control arm bushings, and steering linkages to eliminate rattles, body sway, and uneven tire wear, restoring tight, confident handling to your vehicle.",
+    longContent: [
+      "Your vehicle's suspension system is responsible for more than just a smooth ride: it is critical for braking distance, steering control, and tire contact with the pavement. When struts, shocks, bushings, or tie rod ends wear out, your vehicle bounces uncontrollably, dives during emergency braking, and wanders unpredictably in highway ruts.",
+      "At our Mississauga workshop on Royal Windsor Drive, we perform thorough mechanical inspections on all four corners of your vehicle. We test shock rebound, examine hydraulic seal leakage, check ball joint play, and inspect rubber control arm bushings for tearing and salt degradation.",
+      "We install high-grade OEM and heavy-duty aftermarket suspension components to ensure your car handles securely in all seasons."
+    ],
+    whatsIncluded: [
+      "Comprehensive steering and suspension safety inspection on vehicle lift",
+      "Strut and shock absorber health and leak testing",
+      "Ball joint, control arm, and bushing wear diagnostics",
+      "Inner and outer tie rod end play inspection",
+      "Sway bar link and stabilizer bar bushing evaluation",
+      "Wheel bearing hub noise and play assessment"
+    ],
+    signsYouNeedThis: [
+      "Clunking, popping, or rattling sounds when driving over bumps and uneven pavement",
+      "Excessive bouncing, nose-diving during braking, or body roll in corners",
+      "Vehicle pulls to one side on flat, straight roads",
+      "Uneven or cupped tire tread wear across the inner or outer edges",
+      "Loose or wandering steering wheel feeling at highway speeds"
+    ],
+    faqs: [
+      {
+        question: "How long do shocks and struts typically last?",
+        answer: "In Ontario road conditions with winter potholes and road salt, shocks and struts generally last between 80,000 and 120,000 km before internal damping valves and rubber seals degrade."
+      },
+      {
+        question: "Is it safe to drive with a worn suspension?",
+        answer: "Driving on worn suspension components increases your emergency stopping distance by up to 20%, causes severe premature tire wear, and risks sudden separation of critical parts like ball joints or tie rods."
+      },
+      {
+        question: "Do I need a wheel alignment after suspension repairs?",
+        answer: "Yes, whenever steering or suspension components like struts, tie rods, or control arms are replaced, a wheel alignment is necessary to prevent tire scrubbing and pull."
+      }
+    ],
+    icon: "suspension-spring",
+    relatedServiceSlugs: ["brakes", "safety-inspections", "tune-ups"]
+  },
+  {
+    id: "tune-ups",
+    slug: "tune-ups",
+    name: "Engine Tune-Ups",
+    shortName: "Engine Tune-Ups",
+    leadTagline: "Peak combustion, smooth idling & improved fuel economy.",
+    shortDescription: "Full engine tune-up and ignition maintenance in Mississauga. Spark plug replacement, throttle body cleaning, and computer diagnostics for smooth performance.",
+    fullDescription: "Restore quick throttle response, quiet idling, and optimal kilometers-per-litre with a comprehensive tune-up at Royal Drive Mechanics. We inspect and replace iridium spark plugs, test ignition coil resistance, clean throttle bodies, and clear ECU misfire codes to keep your engine running at peak efficiency.",
+    longContent: [
+      "Today's computer-controlled engines demand precise spark timing and calibrated fuel delivery. Over tens of thousands of kilometers, spark plug electrodes erode, ignition coils lose resistance, throttle bodies accumulate carbon varnish, and engine filters become restricted. The result is sluggish throttle response, reduced kilometers-per-litre, and occasional misfires.",
+      "At RDM Mississauga, our tune-up service goes far beyond simply replacing spark plugs. We utilize advanced diagnostic scanning tools to evaluate live engine sensor parameters, fuel trims, oxygen sensor reactions, and ignition firing voltages.",
+      "Whether you commute daily down the QEW or drive commercial routes in Mississauga, our tune-up packages keep your engine operating at its cleanest and most efficient."
+    ],
+    whatsIncluded: [
+      "Computer diagnostic scan for pending and active trouble codes",
+      "Iridium or platinum spark plug inspection and replacement to factory gap specs",
+      "Ignition coil pack and ignition wire resistance testing",
+      "Engine air filter and cabin air filter inspection and replacement",
+      "Throttle body cleaning and carbon deposit removal",
+      "Fuel injector cleaner treatment and idle speed calibration"
+    ],
+    signsYouNeedThis: [
+      "Rough, vibrating, or stumbling idle when stopped at traffic lights",
+      "Noticeable drop in fuel economy (fewer kilometers per tank)",
+      "Sluggish acceleration or hesitation when pressing the gas pedal",
+      "Intermittent engine misfire or flashing Check Engine Light",
+      "Difficulty starting or prolonged cranking in cold weather"
+    ],
+    faqs: [
+      {
+        question: "When does my car need an engine tune-up?",
+        answer: "Most modern cars with platinum or iridium plugs require tune-ups between 80,000 and 120,000 km. However, if you notice rough idling, decreased gas mileage, or hard starting, you should have it inspected sooner."
+      },
+      {
+        question: "Will a tune-up turn off my Check Engine light?",
+        answer: "If the Check Engine light is triggered by ignition misfires, worn spark plugs, or intake airflow issues, fixing those faults and clearing the ECU codes will resolve the warning."
+      },
+      {
+        question: "How does a tune-up improve fuel economy?",
+        answer: "Fresh spark plugs and a clean intake ensure complete combustion of the air-fuel mixture, preventing wasted unburnt fuel from exiting through the exhaust."
+      }
+    ],
+    icon: "spark-plug",
+    relatedServiceSlugs: ["oil-changes", "engine-transmissions", "safety-inspections"]
+  },
+  {
     id: "collision-repairs",
     slug: "collision-repairs",
-    name: "Collision Work / Collision Repairs",
-    shortName: "Collision Repairs",
-    leadTagline: "We work directly with all major insurance providers.",
-    shortDescription: "Complete auto body repair, collision restoration, and seamless insurance claim handling in Mississauga.",
-    fullDescription: "From minor bumper scrapes, door dings, and fender repairs to major structural collision damage, Royal Drive Mechanics works directly with all major Canadian insurance companies to get you back on the road safely and stress-free.",
+    name: "Collision Repair",
+    shortName: "Collision Repair",
+    leadTagline: "Direct insurance claim handling & seamless auto body restoration.",
+    shortDescription: "Full-service collision repair and auto body restoration in Mississauga. Expert dent removal, panel replacement, paint matching, and direct insurance billing.",
+    fullDescription: "From minor bumper scrapes and door dings to major accident damage, Royal Drive Mechanics makes collision repairs hassle-free. We work directly with all Canadian insurance providers, providing computerized paint matching, structural frame alignment, and mechanical recalibration under one roof.",
     longContent: [
       "Being involved in a traffic accident is stressful enough without having to navigate complicated insurance paperwork and repair logistics. At Royal Drive Mechanics, we take the headache out of collision repairs by working directly with your insurance adjuster.",
       "Our experienced body and mechanical technicians handle structural straightening, panel replacement, color-matched refinishing, and full mechanical re-alignment in-house. Because we are both a mechanical garage and a collision facility, we inspect and repair underlying steering, suspension, and sensor components that typical body shops might overlook.",

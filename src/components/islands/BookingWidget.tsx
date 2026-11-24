@@ -47,7 +47,22 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
       const params = new URLSearchParams(window.location.search);
       const s = params.get('service');
       if (s) {
-        setSelectedService(s);
+        const decoded = decodeURIComponent(s).toLowerCase();
+        const serviceMap: [RegExp, string][] = [
+          [/oil/i, 'Oil Changes & Maintenance'],
+          [/brake/i, 'Brake Repair & Service'],
+          [/safety|inspection/i, 'Vehicle Safety Inspections'],
+          [/trans|engine & trans/i, 'Engine & Transmission Services'],
+          [/suspension|steering/i, 'Suspension & Steering'],
+          [/tune/i, 'Engine Tune-Ups'],
+          [/collision|body|insurance/i, 'Collision Repair'],
+        ];
+        const match = serviceMap.find(([regex]) => regex.test(decoded));
+        if (match) {
+          setSelectedService(match[1]);
+        } else {
+          setSelectedService(s);
+        }
       }
     }
   }, []);
@@ -381,13 +396,13 @@ export default function BookingWidget({ initialService = '', turnstileSiteKey = 
           className="w-full bg-brand-charcoal border border-brand-border rounded-card px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-brand-red text-sm"
         >
           <option value="">-- Choose a service --</option>
-          <option value="All Oil Changes">All Oil Changes (15% OFF Promo)</option>
-          <option value="Brakes">Brakes (15% OFF Promo)</option>
-          <option value="Tune-Ups">Tune-Ups</option>
-          <option value="Suspension">Suspension</option>
-          <option value="Engine & Transmissions">Engine & Transmissions</option>
-          <option value="Safety Inspections & Certification">Safety Inspections & Certification (MTO Licensed)</option>
-          <option value="Collision Work / Collision Repairs">Collision Work / Insurance Claims</option>
+          <option value="Oil Changes & Maintenance">Oil Changes & Maintenance (15% OFF Promo)</option>
+          <option value="Brake Repair & Service">Brake Repair & Service (15% OFF Promo)</option>
+          <option value="Vehicle Safety Inspections">Vehicle Safety Inspections (MTO Licensed)</option>
+          <option value="Engine & Transmission Services">Engine & Transmission Services</option>
+          <option value="Suspension & Steering">Suspension & Steering</option>
+          <option value="Engine Tune-Ups">Engine Tune-Ups</option>
+          <option value="Collision Repair">Collision Repair / Insurance Claims</option>
         </select>
       </div>
 

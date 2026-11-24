@@ -1,5 +1,5 @@
 globalThis.process ??= {}; globalThis.process.env ??= {};
-import { c as contactSchema } from '../../chunks/validate_D_fzIbFC.mjs';
+import { c as contactSchema } from '../../chunks/validate_BZTr_nI9.mjs';
 import { b as businessConfig } from '../../chunks/business_CgHEbruk.mjs';
 export { r as renderers } from '../../chunks/_@astro-renderers_CfQf9S2F.mjs';
 
